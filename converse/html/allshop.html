@@ -1,0 +1,731 @@
+<!doctype html>
+<html>
+	<head>
+		<title>商品列表</title>
+		<meta charset = "utf-8" />
+		<link rel="stylesheet" type="text/css" href="../css/index_css.css"/>
+		<style type = "text/css">
+			.page{
+				margin: 0;
+			    position: relative;
+			    width: 100%;
+			}
+			.tit{
+				margin: 40px auto 45px;
+			}
+			.shop_main{
+				overflow: hidden;
+				height: auto;
+			    margin: 20px auto 0;
+			    max-width: 1000px;
+			}
+			.shop_left{
+				float: left;
+    			width: 25%;
+    			overflow: hidden;
+			}
+			.SLW{
+				width: 88.8%;
+			}
+			.SLT{
+				border: 1px solid #b7b7b7;
+			    box-sizing: border-box;
+			    height: auto;
+			    margin: 0 0 40px;
+			    padding: 0 8.18%;
+			    width: auto;
+			}
+			.SLB{
+				margin-top: 10px;
+    			width: 100%;
+			}
+			.filtertop{
+				border-bottom: 1px solid #b7b7b7;
+			    height: 48px;
+			    line-height: 48px;
+			    width: 100%;
+			}
+			.resetbtm{
+				height: 30px;
+			    line-height: 15px;
+			    text-shopsgn: right;
+			    width: 100%;
+			}
+			.SLB dl{
+				border-top: 1px solid #b7b7b7;
+			    height: 25px;
+			    overflow: hidden;
+			    padding: 18px 0 5px;
+			}
+			.SLB dl dt{
+			    font-size: 18px;
+			    font-weight: bold;
+			    margin-bottom: 18px;
+			}
+			.SLB dl dd ul{
+				clear: both;
+			    content: "";
+			    display: block;
+			    font-size: 0;
+			    height: 0;
+			    visibility: hidden;
+			}
+			.SLB dl dd ul li{
+				background-color: #fff;
+			    border: 1px solid #b7b7b7;
+			    box-sizing: border-box;
+			    cursor: pointer;
+			    float: left;
+			    height: 39px;
+			    line-height: 39px;
+			    margin-bottom: 7px;
+			    margin-right: 8px;
+			    text-shopsgn: center;
+			    text-indent: 0;
+			    width: 49px;
+			}
+			.SLB dl dd ul .mgr0{
+				margin-right: 0;
+			}
+			.shop_right{
+				float: left;
+			    height: auto;
+			    position: relative;
+			    width: 75%;
+			    content: "";
+			    display: block;
+			    font-size: 0;
+			}
+			.shop_top{
+				line-height: 40px;
+			    margin-bottom: 30px;
+			    width: 100%;
+			}
+			.sort{
+				float: left;
+   		 		margin: 0 20px;
+   		 		width: auto;
+			}
+			.sort-box{
+				float: none;
+    			font-size: 14px;
+			}
+			.sort-list{
+				width: auto;
+				height: auto;
+			}
+			.sort-list a{
+				border: 1px solid #ccc;
+    			padding: 3px 15px;
+    			box-sizing: border-box;
+			}
+			.sort-list .shop_active{
+				background: #000 none repeat scroll 0 0;
+			    border: 1px solid #000;
+			    color: #fff;
+			}
+			.shop_right dl{
+				text-align: center;
+				box-sizing: border-box;
+			    float: left;
+			    font-size: 14px;
+			    height: 300px;
+			    position: relative;
+			    width: 33.3333%;
+			}
+			.condo dl:hover{
+				border: 1px solid #b7b7b7;
+			    transition-duration: 0.3s;
+			}
+			.shop_right dl dt{
+				height: 180px;
+			    margin: 0 auto;
+			    padding-top: 10px;
+			    position: relative;
+			    width: 165px;
+			}
+			.shop_right dl dt a{
+				display: block;
+    			width: 100%;
+    			height: 100%;
+			}
+			.shop_right dl dt a img{
+				height: auto;
+    			8max-width: 100%;
+				display: block;
+				margin-bottom: 9.1%;
+				bottom: 0;
+			    position: absolute;
+			    width: 165px;
+			}
+			.shop_right dl dd{
+				line-height: 18px;
+			    text-shopsgn: center;
+			    width: 100%;
+			}
+			.shop_name{
+				height: 55px;
+    			margin-bottom: 5px;
+			}
+			.shop_price{
+				font-weight: bold;
+			}
+		</style>
+		<script type="text/javascript" src = "../js/perfect_startMove.js"></script>
+		<script type="text/javascript" src = "../js/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src = "../js/shop_getjson.js"></script>
+		<script type="text/javascript" src = "../js/topsport.js"></script>
+		<script type = "text/javascript">
+			$(function(){
+				
+			})
+			var condo = $(".condo"); //商品房
+			var shops = $(".condo").find("dl"); //商品
+			var sp_lth = shops.length;//商品数量
+			var isloading = false;//加载状态
+			var shop_list;
+	
+	
+			window.onload = function(){
+				isloading = true;  //哥在用,别打扰
+				getList();
+				//【注】最短的一列li将要露白
+			}
+	
+	
+			window.onscroll = function(){
+				//进行上啦加载
+				var _index = getShort();
+				var li = shops[_index];
+				var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+				scrollTop -= 300;
+				if(li.offsetHeight + li.offsetTop < scrollTop + document.documentElement.clientHeight){
+					if(isloading == false){
+						isloading = true;
+						getList();
+					}
+				}
+			}
+	
+			/*//下载数据
+			function getList(){
+				ajax("get", "getPics.php", "page=" + iPage, function(data){
+					var arr = JSON.parse(data);
+					for(var i = 0; i < arr.length; i++){
+						//获取当前最短的li
+						var _index = getShort();
+	
+						//创建节点,添加数据,插入
+						var oDiv = document.createElement("div");
+						var oImg = document.createElement("img");
+						oImg.src = arr[i].preview; //预览图片
+						//给图片预设一个高度
+						oImg.style.height = arr[i].height * (225 / arr[i].width) + "px";
+	
+						oDiv.appendChild(oImg);
+						var oP = document.createElement("p");
+						oP.innerHTML = arr[i].title;
+						oDiv.appendChild(oP);
+						//将当前div添加到最短的li标签中
+						shops[_index].appendChild(oDiv);
+					}
+					isloading = false;
+				});
+			}*/
+			
+			
+			function getList(){
+				$.ajax({
+					url: '../json/mens.json',
+					type: 'GET',
+					success:function(res){
+						
+						for(var i = 0; i < res.length; i++){
+							shop_list += '<dl><dt><a href="../html/C_type.html"><img src="../' + res[i].img + '"/></a></dt><dd class="shop_name"><a href="">' + res[i].font + '</a></dd><dd class = "shop_price">' + res[i].price + '</dd></dl>'
+						}
+						$(".condo").html(shop_list);
+						isloading = false;
+					}
+				});
+			}
+				
+	
+			//找到最短的那条列表
+			function getShort(){
+				var index = 0;
+				var ih = shops[index].offsetHeight;
+				for(var i = 1; i < sp_lth; i++){
+					if(ih > shops[i].offsetHeight){
+						index = i;
+						ih = shops[i].offsetHeight;
+					}
+				}
+				//返回最短li的下标
+				return index;
+			}
+		</script>
+	</head>
+	<body>
+		<div class = "nav_shadow"></div>
+		<div class = "bgall"></div>
+		<div class = "nav">
+			<div class = "nav_top">
+				<div class = "ntsmall">
+					<div class = "logo"><a href="../index.html"></a></div>
+					<div class = "rgt"><a href=""><img src="../img/help.png"/></a></div>
+					<div class = "rgt search"><p><img src="../img/search.png"/></p></div>
+					<div class = "rgt"><p><img src="../img/chatt.png"/></p></div>
+					<div class = "rgt"><p><img src="../img/shopcar.png"/></p></div>
+					<div class = "rgt" style = "width: auto; font-size: 12px;">
+						<p class = "log" style = "margin: 0; padding-right: 10px;  float: left;"><span>登录</span></p>
+						<span style = "padding-right: 10px; float: left;">/</span>
+						<p class = "reg" style = "margin: 0; padding-right: 12px; float: left;"><span>注册</span></p>
+						<p class = "login" style = "margin-top: 10px; margin-left: 0; float: left;"><img src="../img/users.png"/></p>
+					</div>
+				</div>
+			</div>
+			<div class = "conceal">
+				<div class = "loding">
+					<div class = "L-box">
+						<div class = "lgn">
+							<dl class = "tabL">
+								<dt>还未注册？</dt>
+								<div class = "reg taB">
+									注册账户
+								</div>
+							</dl>
+							<dl class = "tabC">
+								<dt>您可以直接登录</dt>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+							</dl>
+							<dl class = "tabR">
+								<dt>已经成为会员？</dt>
+								<dd class = "phNmb">
+									<input text = "text"/>
+									<span>邮箱/手机</span>
+									<span class = "error">请输入有效的电子邮箱/手机号码！</span>
+								</dd>
+								<dd class = "psWrd">
+									<input text = "text"/>
+									<span>密码必须在6-12个字符之间！</span>
+									<span class = "error"></span>
+								</dd>
+								<dd id = "mb0">
+									<input text = "text" class = "verCod"/>
+									<img src="" class = "verImg"/>
+									<span>请输入验证码</span>
+									<span class = "error"></span>
+								</dd>
+								<dd class = "change">
+									<a href="">换一张</a>
+								</dd>
+								<dd style="margin-top: -15px;">
+									<div style="font-size: 11px;">
+										一旦登录，即表明你同意匡威的
+										<a href="" style = "text-decoration: underline">法律声明</a>
+										和
+										<a href="" style = "text-decoration: underline">使用规则</a>
+									</div>
+								</dd>
+								<dd class = "taB" style="margin-top: -20px;">登录</dd>
+								<!-- <dd class = "btmbox">
+									<div class="keeplog">保持登录状态</div>
+									<div class="forgetkey">忘记密码？</div>
+								</dd> -->
+							</dl>
+						</div>
+						<div class = "rgn">
+							<dl>
+								<dd class = "reg-box">
+									<ul>
+										<li>
+											手机号码<b>*</b>
+											<div class = "li-box">
+												<input type = "text"/>
+												<span>135xxxx3333</span>
+												<span class = "error">请输入11位有效中国手机号码！</span>
+											</div>
+										</li>
+										<li>
+											邮箱<b>*</b>
+											<div class = "li-box">
+												<input type = "text"/>
+												<span>example@converse.com</span>
+												<span class = "error">请输入有效的电子邮箱地址！</span>
+											</div>
+										</li>
+										<li class = "mr0">
+											性别<b>*</b>
+											<div class = "li-box">
+												<div class = ''>男的</div>
+												<div class = ''>女的</div>
+											</div>
+										</li>
+									</ul>
+								</dd>
+								<dd class = "reg-box">
+									<ul>
+										<li>
+											输入密码<b>*</b>
+											<div class = "li-box">
+												<input type = "password"/>
+												<span>密码至少为6位字符</span>
+												<span class = "error">密码为6-12位字符！</span>
+											</div>
+										</li>
+										<li>
+											确认密码<b>*</b>
+											<div class = "li-box">
+												<input type = "password"/>
+												<span>请再次输入密码</span>
+												<span class = "error">抱歉，两次输入的密码不匹配！</span>
+											</div>
+										</li>
+										<li class = "mr0">
+											生日（年-月-日）<b>*</b>
+											<div class = "li-box birth-box">
+												<div class="selectbox">
+													<span class="selectindex"></span>
+													<select id="birthday-year">
+														<option value="1954">1954</option>
+														<option value="1955">1955</option>
+														<option value="1956">1956</option>
+														<option value="1957">1957</option>
+														<option value="1958">1958</option>
+														<option value="1959">1959</option>
+														<option value="1960">1960</option>
+														<option value="1961">1961</option>
+														<option value="1962">1962</option>
+														<option value="1963">1963</option>
+														<option value="1964">1964</option>
+														<option value="1965">1965</option>
+														<option value="1966">1966</option>
+														<option value="1967">1967</option>
+														<option value="1968">1968</option>
+														<option value="1969">1969</option>
+														<option value="1970">1970</option>
+														<option value="1971">1971</option>
+														<option value="1972">1972</option>
+														<option value="1973">1973</option>
+														<option value="1974">1974</option>
+														<option value="1975">1975</option>
+														<option value="1976">1976</option>
+														<option value="1977">1977</option>
+														<option value="1978">1978</option>
+														<option value="1979">1979</option>
+														<option value="1980">1980</option>
+														<option value="1981">1981</option>
+														<option value="1982">1982</option>
+														<option value="1983">1983</option>
+														<option value="1984">1984</option>
+														<option value="1985">1985</option>
+														<option value="1986">1986</option>
+														<option value="1987">1987</option>
+														<option value="1988">1988</option>
+														<option value="1989">1989</option>
+														<option value="1990">1990</option>
+														<option value="1991">1991</option>
+														<option value="1992">1992</option>
+														<option value="1993">1993</option>
+														<option value="1994">1994</option>
+														<option value="1995">1995</option>
+														<option value="1996">1996</option>
+														<option value="1997">1997</option>
+														<option value="1998">1998</option>
+														<option value="1999">1999</option>
+														<option value="2000">2000</option>
+														<option value="2001">2001</option>
+														<option value="2002">2002</option>
+														<option value="2003">2003</option>
+														<option value="2004">2004</option>
+														<option value="2005">2005</option>
+														<option value="2006">2006</option>
+														<option value="2007">2007</option>
+														<option value="2008">2008</option>
+														<option value="2009">2009</option>
+														<option value="2010">2010</option>
+														<option value="2011">2011</option>
+														<option value="2012">2012</option>
+														<option value="2013">2013</option>
+														<option value="2014">2014</option>
+														<option value="2015">2015</option>
+														<option value="2016">2016</option>
+													</select>
+												</div>
+												<div class="selectbox">
+													<span class="selectindex"></span>
+													<select id="birthday-month">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+													</select>
+												</div>
+												<div class="selectbox mr0">
+													<span class="selectindex"></span>
+													<select id="birthday-date">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+														<option value="13">13</option>
+														<option value="14">14</option>
+														<option value="15">15</option>
+														<option value="16">16</option>
+														<option value="17">17</option>
+														<option value="18">18</option>
+														<option value="19">19</option>
+														<option value="20">20</option>
+														<option value="21">21</option>
+														<option value="22">22</option>
+														<option value="23">23</option>
+														<option value="24">24</option>
+														<option value="25">25</option>
+														<option value="26">26</option>
+														<option value="27">27</option>
+														<option value="28">28</option>
+														<option value="29">29</option>
+														<option value="30">30</option>
+														<option value="31">31</option>
+													</select>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</dd>
+								<dd class = "reg-box mr0">
+									<ul>
+										<li>
+											验证码 <b>*</b>
+											<div class = "li-box mb5">
+												<input type = "text" class = "verCod"/>
+												<img src="" class = "verImg"/>
+												<span>请输入验证码</span>
+												<span class = "error">您填写的验证码有误，请重新输入！</span>
+											</div>
+											<div class = "change">
+												<a href="">换一张</a>
+											</div>
+										</li>
+										<li>
+											短信验证码<b>*</b>
+											<div class = "li-box mb5">
+												<input type = "text" class = "verCod"/>
+												<div class="btn-send-mobile">
+													<h5 id="btn-descption">发送短信验证码</h5>
+												</div>
+												<span style="font-size:9px;">不用试了，反正是装饰(￢_￢)</span>
+												<span class = "error">您填写的短信验证码有误，请重新输入！</span>
+											</div>
+										</li>
+										<li class = "mr0">
+											<div style="font-size: 11px;">
+												一旦登录，即表明你同意匡威的
+												<a href="" style = "text-decoration: underline">法律声明</a>
+												和
+												<a href="" style = "text-decoration: underline">使用规则</a>
+											</div>
+											<div class = "taB">
+												注册账户
+											</div>
+										</li>
+									</ul>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div class = "sch">
+					<input type = "text" placeholder = "想找什么随便搜"/>
+					<div class = "sch_btn">
+						<p>X</p>
+						<button><img src="../img/search.png"/></button>
+					</div>
+				</div>
+			</div>
+			<div class = "nav_tab">
+				<div class = "tab_head">
+					<ul></ul>
+				</div>
+				<div class = "nana" id = "nana1">
+					<div class = "nanaTop">
+						<ul></ul>
+					</div>
+						<div class = "centerline"></div>
+					<div class = "nanaBtm">
+						<ul></ul>
+					</div>
+				</div>
+				<div class = "nana" id = "nana2">
+					<div class = "nanaTop">
+						<ul></ul>
+					</div>
+						<div class = "centerline"></div>
+					<div class = "nanaBtm">
+						<ul></ul>
+					</div>
+				</div>
+				<div class = "nana" id = "nana3">
+					<div class = "nanaTop">
+						<ul></ul>
+					</div>
+						<div class = "centerline"></div>
+					<div class = "nanaBtm">
+						<ul></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class = "page">
+			<div class="tit">
+				<h4> 男的 / 688件商品 </h4>
+			</div>
+			<div class = "shop_main">
+				<div class = "shop_left">
+					<div class = "SLW">
+						<div class = "SLT">
+							<div class = "filtertop">
+								<span>筛选</span>
+							</div>
+							<ul></ul>
+							<div class = "resetbtm"></div>
+						</div>
+						<div class = "SLB">
+							<dl>
+								<dt>系列</dt>
+								<dd>CONS</dd>
+								<dd>Jack Purcell</dd>
+								<dd>Chuck Taylor All Star</dd>
+							</dl>
+							<dl>
+								<dt>季节</dt>
+								<dd key="spring">春季</dd>
+								<dd key="summer">夏季</dd>
+								<dd key="fall">秋季</dd>
+								<dd key="holiday">冬季</dd>
+							</dl>
+							<dl>
+								<dt>儿童</dt>
+								<dd key="kids">儿童</dd>
+							</dl>
+							<dl>
+								<dt>产品分类</dt>
+								<dd property="core_ftw">经典帆布鞋</dd>
+								<dd property="evergreen">经典款</dd>
+								<dd property="hi">高帮</dd>
+								<dd property="mid">中帮</dd>
+								<dd property="low">低帮</dd>
+								<dd property="skate_shoes">板鞋</dd>
+							</dl>
+							<dl>
+								<dt>尺码</dt>
+								<dd class="sizewrapper">
+									<ul class="sizebox clearfix">
+										<li class="">35</li>
+										<li class="">35.5</li>
+										<li class="">36</li>
+										<li class="mgr0">36.5</li>
+										<li class="">37</li>
+										<li class="">37.5</li>
+										<li class="">38</li>
+										<li class="mgr0">38.5</li>
+										<li class="">39</li>
+										<li class="">39.5</li>
+										<li class="">40</li>
+										<li class="mgr0">40.5</li>
+										<li class="">41</li>
+										<li class="">41.5</li>
+										<li class="">42</li>
+										<li class="mgr0">42.5</li>
+										<li class="">43</li>
+										<li class="">44</li>
+										<li class="">44.5</li>
+										<li class="mgr0">45</li>
+									</ul>
+								</dd>
+							</dl>
+							<dl>
+								<dt>价格</dt>
+								<dd max="299" min="0">0-299</dd>
+								<dd max="399" min="300">300-399</dd>
+								<dd max="499" min="400">400-499</dd>
+								<dd max="599" min="500">500-599</dd>
+								<dd max="699" min="600">600-699</dd>
+								<dd min="700">700+</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div class = "shop_right">
+					<div class = "shop_top">
+						<div class = "sort-box">
+							<div class="sort">排序</div>
+							<div class = "sort-list">
+								<a class="shop_active" href="">默认</a>
+								<a class="" href="">价格</a>
+								<a class="" href="">最喜欢</a>
+								<a class="" href="">最畅销</a>
+							</div>
+						</div>
+					</div>
+					<div class="condo">
+						<dl>
+							<dt>
+								<a href="">
+								<img src="../img/153830C450_1B_NEW.png"/>
+								</a>
+							</dt>
+							<dd class="shop_name">
+								<a href=""> 【男女同款】Chuck Taylor All Star Core 常青款 </a>
+							</dd>
+							<dd class = "shop_price">￥339.00</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class = "footer-wrapper">
+			<div class = "footer">
+				<ul class = "footer-list">
+					<li>
+						<a href="">关于我们</a>
+					</li>
+					<li>
+						<a href="">帮助和购物指南</a>
+					</li>
+					<li>
+						<a href="">法律声明</a>
+					</li>
+					<li>
+						<a href="">使用规则</a>
+					</li>
+				</ul>
+				<a href="index.html"><div><img src="../img/logo.png"/></div></a>
+				<span class = "footer-bottom">@匡威体育用品（中国）有限公司 保留所有权利    沪ICP备11044134号-2</span>
+			</div>
+		</div>
+		<div id = "chat">
+			<a href="../index.html"><img src = "../img/SurferServer.gif"/></a>
+		</div>
+	</body>
+</html>

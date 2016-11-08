@@ -1,0 +1,421 @@
+/*通用式*/
+*{
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+html,body{
+	width: 100%;
+	height: auto;
+}
+li{
+	list-style: none;
+}
+a{
+	color: #333;
+	outline: medium none;
+    text-decoration: none;
+}
+div{
+	width: 100%;
+	height: auto;
+}
+h1{
+	color: #fff;
+	display: inline-block;
+    font-size: 30px;
+    margin: 78px auto 35px
+}
+.cool_title{
+	background: #464646;
+	color: #fff;
+}
+.information{
+	background: #464646;
+	text-align: center;
+}
+#chat{
+	width: 88px;
+	height: 88px;
+	position: absolute;
+	top: 150px;
+	right: 5px;
+	z-index: 999;
+}
+/* 登录验证 */
+.loding{
+	background-color: #fff;
+    position: relative;
+    width: 100%;
+    z-index: 101;
+    height: auto;
+}
+.lgn{
+	display: none;
+    height: 317px;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 40px 0;
+}
+.rgn{
+	display: none;
+    height: 317px;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 40px 0;
+}
+#rBtn{
+	display: block;
+}
+.tabL{
+	float: left;
+	height: 100%;
+	width: 15%;
+	display: inline-block;
+}
+.L-box{
+	clear: both;
+    content: "";
+    display: block;
+    font-size: 0;
+    height: 0;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+.lgn dt{
+	font-size: 24px;
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+.taB{
+    content: "";
+    display: inline-block;
+    height: 28px;
+    vertical-align: middle;
+    width: 15px;
+    background-color: #000;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    width: 100%;
+}
+.taB:hover{
+	color: #000;
+	background: #fff;
+	transition-duration: 0.3s;
+}
+.tabC{
+	float: left;
+	border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    margin: 0 6%;
+    padding: 0 6%;
+    width: 30%;
+    height: 100%;
+}
+.tabC dd{
+	cursor: pointer;
+	float: left;
+    height: 40px;
+    margin: 0 12px 12px 0;
+    width: 40px;
+}
+.tabC a{
+	background: url(../img/topsina.png);
+	background-color: transparent;
+    display: block;
+    height: 100%;
+    text-indent: -1000em;
+    width: 100%;
+}
+.tabR{
+	width: 30%;
+	display: inline-block;
+	height: auto;
+	float: left;
+}
+.tabR dd{
+	line-height: 38px;
+    margin-bottom: 20px;
+    max-height: 40px;
+    position: relative;
+    width: 100%;
+}
+.L-box input{
+	background: #fff;
+	border: 1px solid #999;
+    box-sizing: border-box;
+    height: 40px;
+    line-height: 30px;
+    padding: 5px 5px 5px 18px;
+    width: 100%;
+}
+.L-box span{
+	color: #999;
+    display: block;
+    font-size: 12px;
+    left: 18px;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+#mb0{
+	margin-bottom: 0;
+}
+.L-box .verCod{
+	float: left;
+    margin-right: 4.78%;
+    width: 47.61%;
+}
+.L-box .verImg{
+	display: inline-block;
+    height: 40px;
+    width: 47.61%;
+}
+.change{
+	color: #000;
+    height: 25px;
+    line-height: 12px;
+    margin: 0;
+    text-align: right;
+    text-decoration: underline;
+}
+.change a{
+	font-size: 14px;
+}
+.btmbox{
+	line-height: 20px;
+}
+.reg-box li{
+	float: left;
+    font-size: 13px;
+    line-height: 20px;
+    margin-right: 5%;
+    width: 30%;
+}
+b{
+	color: red;
+}
+.li-box{
+	line-height: 40px;
+    margin: 10px 0 25px;
+    max-height: 40px;
+    min-height: 40px;
+    position: relative;
+    width: 100%;
+}
+.mr0{
+	margin-right:  0 !important;
+}
+.selectbox {
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 5%;
+    overflow: hidden;
+    position: relative;
+    width: 30%;
+}
+.selectindex{
+	text-align: center;
+}
+.mb5{
+	margin-bottom: 5px;
+}
+.L-box .error{
+	color: red;
+    left: 0;
+    top: 30px;
+}
+.btn-send-mobile{
+	background-color: #848484;
+    display: inline-block;
+    height: 100%;
+    max-width: 142px;
+    min-width: 77px;
+    width: 47%;
+}
+#btn-descption{
+	-moz-user-select: none;
+    color: white;
+    text-align: center;
+}
+/*top show*/
+.logo a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.nav_shadow{
+	height: 130px;
+}
+.bgall{
+	background: url(../img/blackbg.png);
+	display: none;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.conceal{
+	height: auto;
+	background-color: #fff;
+    position: relative;
+    width: 100%;
+    z-index: 101;
+}
+.sch{
+	display: none;
+    height: 40px;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 20px 0;
+    position: relative;
+}
+.sch input{
+	border: 0 none;
+    color: #999;
+    font-family: "Rockwell","fzlthjw","微软雅黑","Microsoft YaHei","黑体","SimHei";
+    font-size: 24px;
+    height: 100%;
+    line-height: 40px;
+    padding: 0;
+}
+.sch_btn{
+	height: 50%;
+    position: absolute;
+    right: 0;
+    top: 25%;
+    width: auto;
+}
+.sch_btn button,.sch_btn p{
+	background-color: transparent;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	float: right;
+	height: 32px;
+	margin-left: 20px;
+	margin-top: 5px;
+	width: 32px;
+	border-radius: 50%;
+}
+.sch_btn p{
+	color: #fff;
+	background-color:#474747;
+	text-align: center;
+	line-height: 32px;
+	border-radius: 50% ;
+}
+.nav{
+	position: fixed;
+	top:0;
+	z-index: 101; 
+	display: block;
+}
+.nav .nav_top{
+	clear: both;
+	width: auto;
+	height: 80px;
+	line-height: 70px;
+	background: black;
+	color: white;
+	padding: 0 84px 0 68px;
+}
+.nav .nav_top .ntsmall{
+	position: relative;
+	display: inline-block;
+	float: left;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.nav .nav_top .ntsmall .logo{
+	background: url(../img/logo.png);
+	display: inline-block;
+	float: left;
+	width: 133px;
+	height: 19px;
+	margin-top: -10px;
+	position: absolute;
+	top: 50%;
+	z-index: 130;
+	overflow: hidden;
+}
+.nav .nav_top .ntsmall .rgt{
+	height: auto;
+	width: auto;
+	float: right;
+	display: inline-block;
+	color: white;
+	display: inline-block;
+	color: #fff;
+}
+.nav .nav_top .ntsmall .rgt p{
+	cursor: pointer;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin: 10px 15px 0 32px;
+	color: #fff;
+}
+.nav .nav_top .ntsmall .rgt a{
+	cursor: pointer;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin: 10px 15px 0 32px;
+	color: #fff;
+}
+
+/*底部声明*/
+.footer-wrapper{
+	background: black;
+	color: white;
+}
+.footer{
+	text-align: center;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding-bottom: 5px;
+}
+.footer-list{
+	line-height: 30px;
+	text-align: center;
+	padding: 18px 0;
+}
+.footer-list li{
+	display: inline-block;
+	margin: 0 10px;
+}
+.footer-list li a{
+	font-size: 12px;
+	color: white;
+	text-align: center;
+}
+.footer a{
+	display: inline-block;
+}
+.footer a div img{
+	display: block;
+}
+.footer .footer-bottom{
+	display: block;
+	width: 100%;
+	margin: 12px auto;
+	font-size: 12px;
+	height: 12px;
+	position:　absolute;
+	bottom: 0;
+}

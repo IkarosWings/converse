@@ -1,0 +1,36 @@
+[
+	{
+		"img": "img/halloween-final.gif",
+		"font": "万圣节大动作",
+		"id": "ban0"
+	},{
+		"img": "img/end-of-season-sale-20161012.jpg",
+		"font": "季末促销",
+		"id": "ban1"
+		
+	},{
+		"img": "img/nigel-cabourn-161029.jpg",
+		"font": "Nigel Cabourn",
+		"id": "ban2"
+	},{
+		"img": "img/allstar2-161001.jpg",
+		"font": "摩登皮革",
+		"id": "ban3"
+	},{
+		"img": "img/essential-1609292.jpg",
+		"font": "极简新经典",
+		"id": "ban4"
+	},{
+		"img": "img/jp-jack-161001.jpg",
+		"font": "精致细节",
+		"id": "ban5"
+	},{
+		"img": "img/leather-1610012.jpg",
+		"font": "街头玩家",
+		"id": "ban6"
+	},{
+		"img": "img/outwear-161001.jpg",
+		"font": "经典棒球",
+		"id": "ban7"
+	}
+]

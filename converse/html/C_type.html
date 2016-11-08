@@ -1,0 +1,1257 @@
+<!doctype html>
+<html>
+	<head>
+		<title>商品详情</title>
+		<meta charset = "utf-8" />
+		<link rel="stylesheet" type="text/css" href="../css/index_css.css"/>
+		<style type="text/css">
+			/*主体*/
+			
+			.count-down-wrap {
+			    font-size: 0;
+			    line-height: 80px;
+			    min-height: 80px;
+			    text-align: center;
+			    width: 100%;
+			}
+			.content {
+			    margin: 0 auto;
+			    position: relative;
+			    width: 1000px;
+			    clear: both;
+			    content: "";
+			    display: block;
+			    overflow: hidden;
+			}
+			.ctleft{
+				float: left;
+			    left: 0;
+			    position: absolute;
+			    top: 0;
+			    width: 200px;
+			}
+			.tab-wrap{
+				margin-top: 20px;
+			}
+			.tab-title {
+			    color: #333;
+			    font-size: 14px;
+			    height: 30px;
+			    line-height: 30px;
+			    position: relative;
+			    width: auto;
+			}
+			.pit{
+				cursor: pointer;
+				float: left;
+   	 			text-indent: 0;
+			}
+			.pit span {
+			    float: left;
+			    text-indent: 40px;
+			}
+			.ctleft i{
+			    background: transparent url("../img/detail.png") no-repeat scroll 999px 999px;
+			    display: block;
+			    height: 30px;
+			    left: 0;
+			    position: absolute;
+			    top: 0;
+			    width: 30px;
+			}
+			.share i{
+				background-position: 0 0;
+			}
+			.favorite i{
+				background-position: 0 -43px;
+			}
+			.smcom-stars{
+				margin: 0 5px;
+			    background: transparent url('../img/stars.png') repeat-x scroll 0 -30px;
+			    height: 30px;
+			    overflow: hidden;
+			    position: relative;
+			    width: 100px;
+			}
+			.smcom div {
+			    float: left;
+			    text-indent: 0;
+			}
+			#commentCount{
+				width: auto;
+			}
+			.smcom-stars span {
+			    background: transparent url("../img/stars.png") repeat-x scroll 0 0;
+			    display: block;
+			    height: 30px;
+			    left: 0;
+			    overflow: hidden;
+			    position: absolute;
+			    top: 0;
+			    width: 0;
+			    cursor: pointer;
+			    text-decoration: underline;
+			}
+			.ctcenter{
+				float: left;
+			    margin-left: 240px;
+			    margin-right: 40px;
+			    position: relative;
+			    width: 520px;
+			    z-index: 12;
+			    
+			}
+			.namewrapper {
+			    position: absolute;
+			    top: 0;
+			    width: 100%;
+			}
+			.ctcenter h1 {
+				margin: 0;
+			    color: #333;
+			    font-size: 24px;
+			    font-weight: bold;
+			    line-height: 37px;
+			    text-align: center;
+			    width: 100%;
+			}
+			.product-price {
+			    line-height: 37px;
+			    text-align: center;
+			    width: 100%;
+			}
+			.product-price span {
+			    color: #333;
+			    font-size: 24px;
+			    font-weight: bold;
+			    margin-right: 7px;
+			}
+			.product-img {
+			    height: 505px;
+			    position: relative;
+			    width: 520px;
+			}
+			.icon-pdp-chuck {
+			    background: transparent url("../img/i-chuck-II.png") no-repeat scroll 0 0 / 95px 118px;
+			    height: 118px;
+			    left: 25px;
+			    position: absolute;
+			    top: 105px;
+			    width: 95px;
+			}
+			.limit-pdp-new {
+			    background: transparent url("../img/limite-icon.png") no-repeat scroll 0 0;
+			    color: #fff;
+			    font-size: 14px;
+			    height: 60px;
+			    line-height: 60px;
+			    position: absolute;
+			    right: 35px;
+			    text-align: center;
+			    top: 105px;
+			    width: 60px;
+			}
+			.zoomPad {
+			    cursor: url("../img/zoom-add.png") 12 12, crosshair;
+			    float: left;
+			    position: relative;
+			    z-index: 99;
+			    height: 450px;
+    			width: 450px;
+    			margin: 60px 35px 0;
+			}
+			.zoomPad > img {
+			    margin: 0 !important;
+			}	
+			.zoomPup {
+			    background-color: #fff;
+			    border: 1px solid #ccc;
+			    height: 23px;
+			    opacity: 0.6;
+			    overflow: hidden;
+			    position: absolute;
+			    width: 23px;
+			    z-index: 101;
+			}	
+			.zoomWindow {
+			    left: -275px !important;
+			    top: -60px !important;
+			}
+			.zoomWindow {
+			    background: rgba(0, 0, 0, 0) url("../img/detail_bg_wrap.jpg") repeat-x scroll 0 -60px;
+			    border: 1px solid #f2f2f2;
+			    border-radius: 5px;
+			    height: auto;
+			    position: absolute;
+			    width: auto;
+			}
+			.zoomWrapper {
+			    border: 2px solid #e9e9e9;
+			    position: relative;
+			    z-index: 110;
+			}
+			.zoomWrapperImage {
+			    display: block;
+			    overflow: hidden;
+			    position: relative;
+			    z-index: 110;
+			}
+			.zoomWrapperImage img {
+			    max-width: none;
+			    width: auto;
+			}
+			.product-img img {
+			    width: 100%;
+			}
+			.zoomWrapperImage img {
+			    border: 0 none;
+			    display: block;
+			    position: absolute;
+			    z-index: 101;
+			}
+			.product-thumb-list {
+			    font-size: 0;
+			    margin-top: 22px;
+			    text-align: center;
+			    width: 100%;
+			}
+			.product-thumb-list a.cur, .product-thumb-list a:hover {
+			    border: 1px solid #b7b7b7;
+			    transition-duration: 0.3s;
+			}
+			.product-thumb-list a:first-child {
+			    margin-left: 0;
+			}
+			.product-thumb-list a {
+			    border: 1px solid transparent;
+			    cursor: pointer;
+			    display: inline-block;
+			    font-size: 0;
+			    height: 70px;
+			    margin-left: 10px;
+			    position: relative;
+			    width: 70px;
+			}
+			.product-thumb-list a img {
+			    bottom: 5px;
+			    display: block;
+			    left: 50%;
+			    margin-left: -30px;
+			    position: absolute;
+			    width: 60px;
+			}
+			a img {
+			    border: 0 none;
+			}
+			img {
+			    border: 0 none;
+			    height: auto;
+			    max-width: 100%;
+			}
+			.product-description {
+			    margin-top: 20px;
+			    text-align: center;
+			}
+			.product-description p, .product-freight p {
+			    color: #333;
+			    font-size: 12px;
+			    line-height: 20px;
+			    text-align: left;
+			}
+			.learn-more-btn {
+			    background-color: #000;
+			    border: 1px solid #000;
+			    color: #fff;
+			    cursor: pointer;
+			    display: inline-block;
+			    font-size: 16px;
+			    height: 48px;
+			    line-height: 50px;
+			    margin: 40px auto 0;
+			    padding: 0 84px;
+			    text-align: center;
+			    width: auto;
+			}
+			.learn-more-btn:hover {
+			    background-color: #fff;
+			    border: 1px solid #b7b7b7;
+			    color: #333;
+			    transition-duration: 0.3s;
+			}
+			.ctright{
+				float: left;
+				width: 200px;
+			}
+			.other-product-list{
+				font-size: 0;
+			}
+			.other-product-list a {
+			    border: 1px solid #B7B7B7;
+			    display: inline-block;
+			    font-size: 0;
+			    height: 48px;
+			    margin-bottom: 10px;
+			    margin-right: 1px;
+			    position: relative;
+			    width: 47px;
+			}
+			.other-product-list a img {
+			    bottom: 5px;
+			    display: inline-block;
+			    left: 50%;
+			    margin-left: -40%;
+			    position: absolute;
+			    vertical-align: bottom;
+			    width: 80%;
+			}
+			.product-info {
+			    border-bottom: 1px solid #b7b7b7;
+			    color: #333;
+			    cursor: pointer;
+			    font-size: 12px;
+			    line-height: 18px;
+			    padding: 10px 0 20px;
+			}
+			.popup-btn {
+			    margin-top: 15px;
+			}
+			.popup-btn i {
+			    background: transparent url("../img/sprites_account.png") no-repeat scroll -10px -138px;
+			    display: inline-block;
+			    height: 20px;
+			    vertical-align: middle;
+			    width: 20px;
+			}
+			.popup-btn span {
+			    border-bottom: 2px solid #999;
+			    font-size: 14px;
+			}
+			.popup-btn:hover {
+			    color: #999;
+			    transition-duration: 0.3s;
+			}
+			.product-size-wrap.noborder {
+			    border: 0 none;
+			    padding: 20px 0 0;
+			}
+			.product-size-wrap.noborder p:first-child {
+			    color: #333;
+			    font-size: 16px;
+			    font-weight: bold;
+			    margin-bottom: 5px;
+			}
+			.now-buy-btn {
+			    background-color: #940000;
+			    color: #fff;
+			    cursor: pointer;
+			    display: block;
+			    font-size: 16px;
+			    font-weight: bold;
+			    height: 50px;
+			    line-height: 50px;
+			    margin-bottom: 2px;
+			    text-align: center;
+			    width: 200px;
+			}
+			.now-buy-btn span {
+			    display: inline-block;
+			    height: 40px;
+			    position: relative;
+			}
+			.add-buycart-btn {
+			    background-color: #940000;
+			    color: #fff;
+			    cursor: pointer;
+			    display: block;
+			    font-size: 16px;
+			    font-weight: bold;
+			    height: 50px;
+			    line-height: 50px;
+			    text-align: center;
+			    width: 200px;
+			}
+			.add-buycart-btn span {
+			    display: inline-block;
+			    height: 40px;
+			    position: relative;
+			    text-indent: 30px;
+			}
+			.add-buycart-btn i {
+			    background: transparent url("../img/detail.png") no-repeat scroll -38px -138px;
+			    display: block;
+			    height: 20px;
+			    left: 0;
+			    position: absolute;
+			    top: 15px;
+			    width: 20px;
+			}
+			/*可能喜欢*/
+			.maylike{
+				display: block;
+				margin-top: 75px;
+				margin: 60px auto 0;
+    			max-width: 1000px;
+			    height: auto;
+			    position: relative;
+			    width: 100%;
+			}
+			.MK-main{
+			    display: inline-block;
+			    margin: 20px auto 0;
+			    padding-bottom: 19px;
+			    position: relative;
+			    width: 100%;
+			}
+			.MK-C{
+				height: auto;
+			    position: relative;
+			    width: 100%;
+			    height: 300px;
+   				overflow: hidden;
+			}
+			.limit-new {
+			    background: transparent url("../img/limite-icon.png") no-repeat scroll 0 0;
+			    color: #fff;
+			    font-size: 14px;
+			    height: 60px;
+			    line-height: 60px;
+			    margin-top: 66px;
+			    position: absolute;
+			    right: 11px;
+			    text-align: center;
+			    top: -35px;
+			    width: 60px;
+			}
+			.arrow {
+			    background-color: transparent;
+			    background-image: url("../img/sprites_icon.png");
+			    background-repeat: no-repeat;
+			    cursor: pointer;
+			    height: 40px;
+			    position: absolute;
+			    top: 40%;
+			    width: 21px;
+			    z-index: 99;
+			}
+			.MK-Left{
+			    background-position: 0 -45px;
+			    left: -4.2%;
+			}
+			.MK-Right{
+			    background-position: 0 0;
+			    right: -4.2%;
+			}
+			/*评论*/
+			.conment{
+			    margin: 60px auto 75px;
+			    max-width: 1000px;
+			}
+			.cmt-top{
+			    padding-top: 20px;
+			    text-align: center;
+			}
+			.comment-stars {
+			    background: transparent url("../img/larger-star.png") repeat-x scroll 0 -57px;
+			    display: inline-block;
+			    height: 30px;
+			    overflow: hidden;
+			    position: relative;
+			    vertical-align: middle;
+			    width: 175px;
+			}
+			.comment-stars span {
+			    background: transparent url("../img/larger-star.png") repeat-x scroll 1px -9px;
+			    display: block;
+			    height: 30px;
+			    left: 0;
+			    overflow: hidden;
+			    position: absolute;
+			    top: 0;
+			    width: 0;
+			}
+			.c-s-level {
+			    color: #d50424;
+			    display: inline-block;
+			    font-family: "Rockwell","fzlthjw","微软雅黑","Microsoft YaHei","黑体","SimHei";
+			    font-size: 30px;
+			    font-weight: bold;
+			    line-height: 30px;
+			    margin-left: 5px;
+			    vertical-align: middle;
+			    width: auto;
+			}
+			/*历史*/
+			.view-history{
+				margin: 0 auto;
+			    max-width: 1000px;
+			    position: relative;
+			}
+			.view-box{
+			    height: auto;
+			    position: relative;
+			    width: 100%;
+			}
+			.box-list {
+				width: 100%;
+			    height: auto;
+			    margin: 0 auto;
+			    max-width: 1000px;
+			    overflow: hidden;
+			    position: relative;
+			}
+			.box-list dl{
+			    box-sizing: border-box;
+			    float: left;
+			    font-size: 14px;
+			    height: 300px;
+			    position: relative;
+			    width: 25%;
+			}
+			.box-list dl:hover {
+			    border: 1px solid #b7b7b7;
+			    transition-duration: 0.3s;
+			}
+			.box-list dt{
+			    height: 180px;
+			    margin: 0 auto;
+			    padding-top: 10px;
+			    position: relative;
+			    width: 165px;
+			}
+			.box-list a{
+				height: 100%;
+			}
+			.box-list dt img {
+			    display: block;
+			    width: 100%;
+			}
+			.box-list dl dd {
+			    line-height: 18px;
+			    text-align: center;
+			    width: 100%;
+			}
+			.pro-name{
+			    height: 55px;
+			    margin-bottom: 5px;
+			}
+		</style>
+		<script type="text/javascript" src = "../js/perfect_startMove.js"></script>
+		<script type="text/javascript" src = "../js/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src = "../js/shop_getjson.js"></script>
+		<script type="text/javascript" src = "../js/topsport.js"></script>
+		<script type = "text/javascript">
+			$(function(){
+				$(".zoomPad").hover(function(){
+					$(".zoomPup").css("display","block")
+					$(".zoomWindow").css("display","block");
+				},function(){
+					$(".zoomPup").css("display","none");
+					$(".zoomWindow").css("display","none");
+				});
+				
+				var small=document.getElementById('small');//小图大框
+				var moves=document.getElementById('moves');//移动小框
+				var smallpic=document.getElementById('smallpic');//图片
+				var big=document.getElementById('big');
+				var bigpic=document.getElementById('bigpic')
+				
+				smallpic.onmousemove=function(event){
+					var evt=event||window.event;
+					var left=evt.offsetX-moves.offsetWidth/2;
+					if(left<0){
+						left=0;
+					}else if(left>small.offsetWidth-moves.offsetWidth){
+						left=small.offsetWidth-moves.offsetWidth;
+					}
+					//moves.style.left=left+'px';
+					$("#moves").css("left",left+"px");
+					var top=evt.offsetY-moves.offsetHeight/2;
+					if(top<0){
+						top=0;
+					}else if(top>small.offsetHeight-moves.offsetHeight){
+						top=small.offsetHeight-moves.offsetHeight
+					}
+					$("#moves").css("top",top+"px");
+					//moves.style.top=top+'px';
+					//移动的比例  把X值和Y值换算成比例;
+					var proportionX=left/(small.offsetWidth-moves.offsetWidth);
+					var proportionY=top/(small.offsetHeight-moves.offsetHeight);
+					//利用比例去算出大小不同的元素的偏移距离；
+					bigpic.style.left=-proportionX*(bigpic.offsetWidth-big.offsetWidth)+'px';
+					bigpic.style.top=-proportionY*(bigpic.offsetHeight-big.offsetHeight)+'px';
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div class = "nav_shadow"></div>
+		<div class = "bgall"></div>
+		<div class = "nav">
+			<div class = "nav_top">
+				<div class = "ntsmall">
+					<div class = "logo"><a href="../index.html"></a></div>
+					<div class = "rgt"><a href=""><img src="../img/help.png"/></a></div>
+					<div class = "rgt search"><p><img src="../img/search.png"/></p></div>
+					<div class = "rgt"><p><img src="../img/chatt.png"/></p></div>
+					<div class = "rgt"><p><img src="../img/shopcar.png"/></p></div>
+					<div class = "rgt" style = "width: auto; font-size: 12px;">
+						<p class = "log" style = "margin: 0; padding-right: 10px;  float: left;"><span>登录</span></p>
+						<span style = "padding-right: 10px; float: left;">/</span>
+						<p class = "reg" style = "margin: 0; padding-right: 12px; float: left;"><span>注册</span></p>
+						<p class = "login" style = "margin-top: 10px; margin-left: 0; float: left;"><img src="../img/users.png"/></p>
+					</div>
+				</div>
+			</div>
+			<div class = "conceal">
+				<div class = "loding">
+					<div class = "L-box">
+						<div class = "lgn">
+							<dl class = "tabL">
+								<dt>还未注册？</dt>
+								<div class = "reg taB">
+									注册账户
+								</div>
+							</dl>
+							<dl class = "tabC">
+								<dt>您可以直接登录</dt>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+								<dd class = "tCL"><a href=""></a></dd>
+							</dl>
+							<dl class = "tabR">
+								<dt>已经成为会员？</dt>
+								<dd class = "phNmb">
+									<input text = "text"/>
+									<span>邮箱/手机</span>
+									<span class = "error">请输入有效的电子邮箱/手机号码！</span>
+								</dd>
+								<dd class = "psWrd">
+									<input text = "text"/>
+									<span>密码必须在6-12个字符之间！</span>
+									<span class = "error"></span>
+								</dd>
+								<dd id = "mb0">
+									<input text = "text" class = "verCod"/>
+									<img src="" class = "verImg"/>
+									<span>请输入验证码</span>
+									<span class = "error"></span>
+								</dd>
+								<dd class = "change">
+									<a href="">换一张</a>
+								</dd>
+								<dd style="margin-top: -15px;">
+									<div style="font-size: 11px;">
+										一旦登录，即表明你同意匡威的
+										<a href="" style = "text-decoration: underline">法律声明</a>
+										和
+										<a href="" style = "text-decoration: underline">使用规则</a>
+									</div>
+								</dd>
+								<dd class = "taB" style="margin-top: -20px;">登录</dd>
+								<!-- <dd class = "btmbox">
+									<div class="keeplog">保持登录状态</div>
+									<div class="forgetkey">忘记密码？</div>
+								</dd> -->
+							</dl>
+						</div>
+						<div class = "rgn">
+							<dl>
+								<dd class = "reg-box">
+									<ul>
+										<li>
+											手机号码<b>*</b>
+											<div class = "li-box">
+												<input type = "text"/>
+												<span>135xxxx3333</span>
+												<span class = "error">请输入11位有效中国手机号码！</span>
+											</div>
+										</li>
+										<li>
+											邮箱<b>*</b>
+											<div class = "li-box">
+												<input type = "text"/>
+												<span>example@converse.com</span>
+												<span class = "error">请输入有效的电子邮箱地址！</span>
+											</div>
+										</li>
+										<li class = "mr0">
+											性别<b>*</b>
+											<div class = "li-box">
+												<div class = ''>男的</div>
+												<div class = ''>女的</div>
+											</div>
+										</li>
+									</ul>
+								</dd>
+								<dd class = "reg-box">
+									<ul>
+										<li>
+											输入密码<b>*</b>
+											<div class = "li-box">
+												<input type = "password"/>
+												<span>密码至少为6位字符</span>
+												<span class = "error">密码为6-12位字符！</span>
+											</div>
+										</li>
+										<li>
+											确认密码<b>*</b>
+											<div class = "li-box">
+												<input type = "password"/>
+												<span>请再次输入密码</span>
+												<span class = "error">抱歉，两次输入的密码不匹配！</span>
+											</div>
+										</li>
+										<li class = "mr0">
+											生日（年-月-日）<b>*</b>
+											<div class = "li-box birth-box">
+												<div class="selectbox">
+													<span class="selectindex"></span>
+													<select id="birthday-year">
+														<option value="1954">1954</option>
+														<option value="1955">1955</option>
+														<option value="1956">1956</option>
+														<option value="1957">1957</option>
+														<option value="1958">1958</option>
+														<option value="1959">1959</option>
+														<option value="1960">1960</option>
+														<option value="1961">1961</option>
+														<option value="1962">1962</option>
+														<option value="1963">1963</option>
+														<option value="1964">1964</option>
+														<option value="1965">1965</option>
+														<option value="1966">1966</option>
+														<option value="1967">1967</option>
+														<option value="1968">1968</option>
+														<option value="1969">1969</option>
+														<option value="1970">1970</option>
+														<option value="1971">1971</option>
+														<option value="1972">1972</option>
+														<option value="1973">1973</option>
+														<option value="1974">1974</option>
+														<option value="1975">1975</option>
+														<option value="1976">1976</option>
+														<option value="1977">1977</option>
+														<option value="1978">1978</option>
+														<option value="1979">1979</option>
+														<option value="1980">1980</option>
+														<option value="1981">1981</option>
+														<option value="1982">1982</option>
+														<option value="1983">1983</option>
+														<option value="1984">1984</option>
+														<option value="1985">1985</option>
+														<option value="1986">1986</option>
+														<option value="1987">1987</option>
+														<option value="1988">1988</option>
+														<option value="1989">1989</option>
+														<option value="1990">1990</option>
+														<option value="1991">1991</option>
+														<option value="1992">1992</option>
+														<option value="1993">1993</option>
+														<option value="1994">1994</option>
+														<option value="1995">1995</option>
+														<option value="1996">1996</option>
+														<option value="1997">1997</option>
+														<option value="1998">1998</option>
+														<option value="1999">1999</option>
+														<option value="2000">2000</option>
+														<option value="2001">2001</option>
+														<option value="2002">2002</option>
+														<option value="2003">2003</option>
+														<option value="2004">2004</option>
+														<option value="2005">2005</option>
+														<option value="2006">2006</option>
+														<option value="2007">2007</option>
+														<option value="2008">2008</option>
+														<option value="2009">2009</option>
+														<option value="2010">2010</option>
+														<option value="2011">2011</option>
+														<option value="2012">2012</option>
+														<option value="2013">2013</option>
+														<option value="2014">2014</option>
+														<option value="2015">2015</option>
+														<option value="2016">2016</option>
+													</select>
+												</div>
+												<div class="selectbox">
+													<span class="selectindex"></span>
+													<select id="birthday-month">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+													</select>
+												</div>
+												<div class="selectbox mr0">
+													<span class="selectindex"></span>
+													<select id="birthday-date">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+														<option value="13">13</option>
+														<option value="14">14</option>
+														<option value="15">15</option>
+														<option value="16">16</option>
+														<option value="17">17</option>
+														<option value="18">18</option>
+														<option value="19">19</option>
+														<option value="20">20</option>
+														<option value="21">21</option>
+														<option value="22">22</option>
+														<option value="23">23</option>
+														<option value="24">24</option>
+														<option value="25">25</option>
+														<option value="26">26</option>
+														<option value="27">27</option>
+														<option value="28">28</option>
+														<option value="29">29</option>
+														<option value="30">30</option>
+														<option value="31">31</option>
+													</select>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</dd>
+								<dd class = "reg-box mr0">
+									<ul>
+										<li>
+											验证码 <b>*</b>
+											<div class = "li-box mb5">
+												<input type = "text" class = "verCod"/>
+												<img src="" class = "verImg"/>
+												<span>请输入验证码</span>
+												<span class = "error">您填写的验证码有误，请重新输入！</span>
+											</div>
+											<div class = "change">
+												<a href="">换一张</a>
+											</div>
+										</li>
+										<li>
+											短信验证码<b>*</b>
+											<div class = "li-box mb5">
+												<input type = "text" class = "verCod"/>
+												<div class="btn-send-mobile">
+													<h5 id="btn-descption">发送短信验证码</h5>
+												</div>
+												<span style="font-size:9px;">不用试了，反正是装饰(￢_￢)</span>
+												<span class = "error">您填写的短信验证码有误，请重新输入！</span>
+											</div>
+										</li>
+										<li class = "mr0">
+											<div style="font-size: 11px;">
+												一旦登录，即表明你同意匡威的
+												<a href="" style = "text-decoration: underline">法律声明</a>
+												和
+												<a href="" style = "text-decoration: underline">使用规则</a>
+											</div>
+											<div class = "taB">
+												注册账户
+											</div>
+										</li>
+									</ul>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div class = "sch">
+					<input type = "text" placeholder = "想找什么随便搜"/>
+					<div class = "sch_btn">
+						<p>X</p>
+						<button><img src="../img/search.png"/></button>
+					</div>
+				</div>
+			</div>
+			<div class = "nav_tab">
+				<div class = "tab_head">
+					<ul></ul>
+				</div>
+				<div class = "nana" id = "nana1">
+					<div class = "nanaTop">
+						<ul></ul>
+					</div>
+						<div class = "centerline"></div>
+					<div class = "nanaBtm">
+						<ul></ul>
+					</div>
+				</div>
+				<div class = "nana" id = "nana2">
+					<div class = "nanaTop">
+						<ul></ul>
+					</div>
+						<div class = "centerline"></div>
+					<div class = "nanaBtm">
+						<ul></ul>
+					</div>
+				</div>
+				<div class = "nana" id = "nana3">
+					<div class = "nanaTop">
+						<ul></ul>
+					</div>
+						<div class = "centerline"></div>
+					<div class = "nanaBtm">
+						<ul></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class = "count-down-wrap"></div>
+		<div class = "content">
+			<div class="ctleft">
+				<div class="tab-wrap" style="margin-top: 0;">
+					<div class="tab-title share">
+						<div class="cur pit">
+							<i></i>
+							<span>分享</span>
+						</div>
+					</div>
+					<div></div>
+				</div>
+				<div class="tab-wrap">
+					<div class="tab-title favorite">
+						<div class="pit">
+							<i></i>
+							<span>  					加入收藏  					(24) 					 				</span>
+						</div>
+					</div>
+				</div>
+				<div class="tab-wrap">
+					<div class="tab-title smcom">
+						<div class="smcom-stars">
+							<span style="width: 100.0px;"></span>
+						</div>
+						<div id="commentCount">
+							<a>评论此商品</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="ctcenter">
+				<div class="namewrapper">
+					<h1 class="product-name">
+						<span id="product-name">【男的】Chuck II 摩登月亮印花</span>
+						  男款
+					</h1>
+					<div class="product-price">
+						<span>价格</span>
+						<span class="">¥699.00</span>
+					</div>
+				</div>
+				<div class="product-img">
+					<div class="icon-bg-red icon-pdp-chuck"></div>
+					<div class="limit-pdp-new"></div>
+					<div class="zoomPad" id = "small">
+						<img id = "smallpic" src="../img/155357C031_1H_NEW.png" style="width:450px;height:450px;margin:60px 35px 0px;" alt=" 【男的】Chuck II 摩登月亮印花  男款 " title=" 【男的】Chuck II 摩登月亮印花  男款 " width="450" height="450">
+						<div class="zoomPup" id = "moves" style="display: none; width: 56px; height: 143px; position: absolute; border-width: 1px;"></div>
+						<div class="zoomWindow" style="display :none;position: absolute; z-index: 5001; left: -202px; top: 0px;">
+							<div class="zoomWrapper" id = "big" style="width: 200px;">
+								<div class="zoomWrapperImage" style="width: 100%; height: 510px;">
+									<img id = "bigpic" style="position: absolute; border: 0px none; display: block; left: 0; top: 0;height: 1600px;width: 1600px;" src="../img/155357C031_1L_NEW.png">
+								</div>
+							</div>
+						</div>
+					</div>                                                          
+				</div>
+				<div class="product-thumb-list">
+					<a class="cur">
+						<img src="../img/155357C031_1S_NEW.png">
+					</a>
+					<a>
+						<img src="../img/155357C031_2S_NEW.png">
+					</a>
+					<a>
+						<img src="../img/155357C031_3S_NEW.png">
+					</a>
+					<a>
+						<img src="../img/155357C031_4S_NEW.png">
+					</a>
+					<a>
+						<img src="../img/155357C031_5S_NEW.png">
+					</a>
+				</div>
+				<div class="product-description">
+					<p>全新Chuck Taylor All Star II 系列，鞋面采用纺织面料，结合月亮图案印花，打造极致摩登的硬朗风格。同时，搭载了Chuck II鞋型的革新细节，包括全皮革内衬、精工细致的Chuck Taylor徽标、以及标志性的Nike Lunarlon鞋垫，呈现出卓越舒适的穿着体验。高帮，纺织织物，灰色/黑色。</p>
+					<a class="learn-more-btn" href="">Chuck Taylor All Star</a>
+				</div>
+			</div>
+			<div class="ctright">
+				<div class="other-product-list">
+					<a class="cur" href="">
+						<img src="../img/155357C031_1S_NEW.png" title="灰色/黑色">
+					</a>
+				</div>
+				<div class="product-info">
+					<div>
+						色 : 灰色/黑色
+						<br>
+						型号 : 155357C031
+					</div>
+					<div class="popup-btn">
+						<i></i>
+						<span id="size-chart-btn">尺码对照表</span>
+					</div>
+				</div>
+				<div class="product-size-wrap noborder">
+					<p>尺码换算器</p>
+				</div>
+				<a id="now-buy-btn" class="now-buy-btn">
+					<span>立即购买</span>
+				</a>
+				<a id="add-buycart-btn" class="add-buycart-btn">
+					<span>
+						<i></i>
+						添加到购物车
+					</span>
+				</a>
+			</div>
+		</div>
+		<div class = "maylike">
+			<div class = "tit">
+				<h4>您或许喜欢</h4>
+			</div>
+			<div class="MK-main">
+				<div class="box-list">
+					<div class="MK-C">
+						<dl>
+							<dt>
+								<a href="">
+									<img src="../img/153534C102_1B_NEW.png" />
+								</a>
+							</dt>
+							<dd class = "pro-name">
+								<a>【男女同款】Chuck Taylor All Star Street Hiker 户外徒步 					</a>
+							</dd>
+							<dd>￥699.00</dd>
+						</dl><dl>
+							<dt>
+								<a href="">
+									<img src="../img/150154C100_1B_NEW.png" />
+								</a>
+							</dt>
+							<dd class = "pro-name">
+								<a>
+									Jack Purcell M-Series
+									<br>
+									牛皮革纯色开口笑
+								</a>
+							</dd>
+							<dd>￥699.00</dd>
+						</dl>
+						<dl>
+							<dt>
+								<a href="">
+									<img src="../img/155357C031_1B_NEW.png" />
+								</a>
+							</dt>
+							<dd class = "pro-name">
+								<a>【男的】Chuck II 摩登月亮印花 					</a>
+							</dd>
+							<dd>￥699.00</dd>
+							<div class="limit-new"></div>
+						</dl>
+						<dl>
+							<dt>
+								<a href="">
+									<img src="../img/1Q698987_1B_NEW.png" />
+								</a>
+							</dt>
+							<dd class = "pro-name">
+								<a>【男女同款】Jack Purcell LTT 皮革开口笑 					</a>
+							</dd>
+							<dd>￥499.00</dd>
+						</dl>
+					</div>
+				</div>
+				<div class = "MK-Left arrow"></div>
+				<div class = "MK-Right arrow"></div>
+			</div>
+		</div>
+		<div class = "conment">
+			<div class = "tit">
+				<h4>0      评论</h4>
+			</div>
+			<div class = "cmt-top">
+				<div class="comment-stars">
+					<span style="width: 175px;"></span>
+				</div>
+				<div class="c-s-level">5.0</div>
+			</div>
+		</div>
+		<div class = "view-history">
+			<div class = "tit" style = "margin-bottom:40px;">
+				<h4>您最近查看的商品</h4>
+			</div>
+			<div class ="view-box">
+				<div class="box-list">
+					<dl>
+						<dt>
+							<a href="">
+								<img src="../img/153534C102_1B_NEW.png" />
+							</a>
+						</dt>
+						<dd class = "pro-name">
+							<a>【男女同款】Chuck Taylor All Star Street Hiker 户外徒步 					</a>
+						</dd>
+						<dd>￥699.00</dd>
+					</dl><dl>
+						<dt>
+							<a href="">
+								<img src="../img/150154C100_1B_NEW.png" />
+							</a>
+						</dt>
+						<dd class = "pro-name">
+							<a>
+								Jack Purcell M-Series
+								<br>
+								牛皮革纯色开口笑
+							</a>
+						</dd>
+						<dd>￥699.00</dd>
+					</dl>
+					<dl>
+						<dt>
+							<a href="">
+								<img src="../img/155357C031_1B_NEW.png" />
+							</a>
+						</dt>
+						<dd class = "pro-name">
+							<a>【男的】Chuck II 摩登月亮印花 					</a>
+						</dd>
+						<dd>￥699.00</dd>
+					</dl>
+					<dl>
+						<dt>
+							<a href="">
+								<img src="../img/1Q698987_1B_NEW.png" />
+							</a>
+						</dt>
+						<dd class = "pro-name">
+							<a>【男女同款】Jack Purcell LTT 皮革开口笑 					</a>
+						</dd>
+						<dd>￥499.00</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		<div class = "typebg">
+			<div class = "type">
+				<div style = "width: 97%; margin: 20px auto; height: 1px; background-color: #B7B7B7;"></div>
+				<dl>
+					<dt><a href="">男的</a></dt>
+					<dd><a href="">CHUCK TAYLOR ALL START</a></dd>
+					<dd><a href="">CONVERSE CONS</a></dd>
+					<dd><a href="">JACK PURCELL</a></dd>
+					<dd class = "mgb20"><a href="">CHUCK II</a></dd>
+					<dd><a href="">踩的</a></dd>
+					<dd><a href="">穿的</a></dd>
+					<dd><a href="">戴的</a></dd>
+					<dd><a href="">优惠</a></dd>
+				</dl>
+				<dl>
+					<dt><a href="">女的</a></dt>
+					<dd><a href="">CHUCK TAYLOR ALL START</a></dd>
+					<dd><a href="">CONVERSE CONS</a></dd>
+					<dd><a href="">JACK PURCELL</a></dd>
+					<dd class = "mgb20"><a href="">CHUCK II</a></dd>
+					<dd><a href="">踩的</a></dd>
+					<dd><a href="">穿的</a></dd>
+					<dd><a href="">戴的</a></dd>
+					<dd><a href="">优惠</a></dd>
+				</dl>
+				<dl>
+					<dt><a href="">儿童</a></dt>
+					<dd><a href="">CHUCK TAYLOR ALL START</a></dd>
+					<dd><a href="">CONVERSE CONS</a></dd>
+					<dd><a href="">&nbsp;</a></dd>
+					<dd class = "mgb20"> <a href="">&nbsp;</a></dd>
+					<dd><a href="">踩的</a></dd>
+					<dd><a href="">穿的</a></dd>
+					<dd><a href="">戴的</a></dd>
+					<dd><a href="">优惠</a></dd>
+				</dl>
+				<dl>
+					<dt><a href="">电子杂志</a></dt>
+					<dd><a href="">CHUCK TAYLOR ALL</a></dd>
+					<dd><a href="">CONVERSE CONS</a></dd>
+					<dd class = "mgb20"><a href="">JACK PURCELL</a></dd>
+					<dd><a href="">活动</a></dd>
+					<dd><a href="">音乐</a></dd>
+					<dd><a href="">DIY</a></dd>
+					<dd><a href="">街头文化</a></dd>
+					<dd><a href="">时尚</a></dd>
+					<dd><a href="">人物</a></dd>
+				</dl>
+				<dl>
+					<dt><a href="">我的账户</a></dt>
+					<dd><a href="">现有订单</a></dd>
+					<dd><a href="">过去订单</a></dd>
+					<dd><a href="">退换货</a></dd>
+					<dd><a href="">账户设置</a></dd>
+					<dd><a href="">地址簿</a></dd>
+					<dd><a href="">我的优惠券</a></dd>
+					<dd><a href="">我的收藏</a></dd>
+					<dd><a href="">我的评论</a></dd>
+				</dl>
+				<dl>
+					<dt><a href="">帮助和购物指南</a></dt>
+					<dd><a href="">账户</a></dd>
+					<dd><a href="">订单</a></dd>
+					<dd><a href="">尺寸</a></dd>
+					<dd><a href="">退货和退款</a></dd>
+					<dd><a href="">换货</a></dd>
+					<dd><a href="">配送</a></dd>
+					<dd><a href="">联系我们</a></dd>
+					<dd><a href="">常见问题</a></dd>
+				</dl>
+				<dl>
+					<dt><a href="">NIKE</a></dt>
+					<dd><a href="">NAKE+</a></dd>
+					<dd><a href="">JORDAN</a></dd>
+				</dl>
+			</div>
+		</div>
+		<div class = "footer-wrapper">
+			<div class = "footer">
+				<ul class = "footer-list">
+					<li>
+						<a href="">关于我们</a>
+					</li>
+					<li>
+						<a href="">帮助和购物指南</a>
+					</li>
+					<li>
+						<a href="">法律声明</a>
+					</li>
+					<li>
+						<a href="">使用规则</a>
+					</li>
+				</ul>
+				<a href="index.html"><div><img src="../img/logo.png"/></div></a>
+				<span class = "footer-bottom">@匡威体育用品（中国）有限公司 保留所有权利    沪ICP备11044134号-2</span>
+			</div>
+		</div>
+		<div id = "chat">
+			<a href="../index.html"><img src = "../img/SurferServer.gif"/></a>
+		</div>
+	</body>
+</html>
