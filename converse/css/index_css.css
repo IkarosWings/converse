@@ -73,6 +73,7 @@ h1{
 	width: 15%;
 	display: inline-block;
 }
+
 .L-box{
 	clear: both;
     content: "";
@@ -157,18 +158,33 @@ h1{
     line-height: 30px;
     padding: 5px 5px 5px 18px;
     width: 100%;
+    filter:alpho(opacity=50);
+    opacity: 0.5;
 }
 .L-box span{
-	color: #999;
+	color: black;
     display: block;
     font-size: 12px;
     left: 18px;
     position: absolute;
     top: 0;
-    z-index: 0;
+    z-index: -6;
+}
+span.error{
+	display: none;
 }
 #mb0{
 	margin-bottom: 0;
+}
+.sex{
+	width: 45%;
+	float: left;
+	line-height: 55px;
+}
+.sex input{
+	filter: alpho(opacity=100);
+	opacity: 1;
+	width: auto;
 }
 .L-box .verCod{
 	float: left;

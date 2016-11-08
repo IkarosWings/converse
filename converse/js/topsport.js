@@ -102,7 +102,7 @@ $(function(){
         $(this).find('span').css('text-decoration',' none');
     });
     var n = 0;
-    $(".search").click(function(event) {
+    $(".search").stop().click(function(event) {
             if(n==0){
                 $(".lgn").animate({opacity:0}, 400).css('display', 'none');
                 $(".rgn").animate({opacity:0}, 400).css('display', 'none');
@@ -124,7 +124,7 @@ $(function(){
                 n=0;                    
             }
     });
-    $(".login").click(function(event) {
+    $(".login").stop().click(function(event) {
             if(n==0){
                 $(".rgn").animate({opacity:0}, 400).css('display', 'none');
                 $(".sch").animate({height:0}, 400).css('display', 'none');
@@ -145,7 +145,7 @@ $(function(){
                 n=0;                    
             }
     });
-    $(".log").click(function(event) {
+    $(".log").stop().click(function(event) {
         if (true) {
             $(".sch").animate({height:0}, 400).css('display', 'none');
             $(".rgn").animate({opacity:0}, 400).css('display', 'none');
@@ -159,7 +159,7 @@ $(function(){
         };
             
     });
-    $(".reg").click(function(event) {
+    $(".reg").stop().click(function(event) {
         if (true) {
             $(".sch").animate({height:0}, 400).css('display', 'none');
             $(".lgn").animate({opacity:0}, 400).css('display', 'none');
@@ -172,12 +172,15 @@ $(function(){
             $(".rgn").animate({opacity:1}, 400).css('display', 'block');
         };
     });
-    $(".bgall").click(function(event) {
+    $(".bgall").stop().click(function(event) {
         $(".sch").animate({height:0, opacity:0}, 400).css('display', 'none');
         $(".loding").animate({height:0,}, 400).css('display', 'none');
         $(".bgall").css('display', 'none').css('z-index','1000');
         n=0;  
     });
 
-
+	
+	
+	
+	
 })
