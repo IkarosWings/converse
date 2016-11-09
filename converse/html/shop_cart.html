@@ -1,10 +1,18 @@
 <!doctype html>
 <html>
 	<head>
-		<title></title>
+		<title>购物车</title>
 		<meta charset = "utf-8" />
 		<link rel="stylesheet" type="text/css" href="../css/index_css.css"/>
 		<style type = "text/css">
+			a img {
+			    border: 0 none;
+			}
+			img {
+			    border: 0 none;
+			    height: auto;
+			    max-width: 100%;
+			}
 			.shop-car{
 			    margin: 0;
 			    position: relative;
@@ -14,6 +22,32 @@
 				float: right;
 				display: inline-block;
 			}
+			
+			.shopcart-header.steps1::before {
+			    background-color: #464646;
+			    content: "";
+			    height: 100%;
+			    left: 0;
+			    position: absolute;
+			    top: 0;
+			    width: 50%;
+			}
+			.shopcart-header::after {
+			    content: "";
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    width: 50%;
+			    z-index: -1;
+			}
+			.shopcart-header {
+			    border-bottom: 1px solid #b7b7b7;
+			    border-top: 1px solid #000;
+			    height: 60px;
+			    position: relative;
+			    width: 100%;
+			}
 			.sale-message {
 			    color: #d50424;
 			    font-size: 18px;
@@ -22,6 +56,477 @@
 			    max-width: 1000px;
 			    min-height: 40px;
 			    text-align: center;
+			}
+			.shopcart-header-container .shopcart-header-left, .shopcart-header-container .shopcart-header-right {
+			    float: left;
+			    font-size: 18px;
+			    height: 100%;
+			    position: relative;
+			    width: 50%;
+			}
+			.shopcart-header-container {
+			    height: 100%;
+			    margin: 0 auto;
+			    max-width: 1000px;
+			    position: relative;
+			}
+			.shopcart-header-container .current-steps {
+			    background-color: #464646;
+			    color: #fff;
+			}
+			
+			.shopcart-header-container .current-steps::after {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll 0 0;
+			    content: "";
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    width: 35px;
+			}
+			.shopcart-header-left::after {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll -35px -140px;
+			    content: "";
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    width: 35px;
+			}
+			
+			.current-steps li.header-space1::before {
+			    background-position: -177px -195px !important;
+			}
+			.shopcart-header-left .header-space1::before {
+			    background-color: transparent;
+			    background-image: url("../img/sprites_header_footer.png");
+			    background-position: -142px -195px;
+			    background-repeat: no-repeat;
+			    content: "";
+			    height: 20px;
+			    left: 0;
+			    margin-top: -10px;
+			    position: absolute;
+			    top: 50%;
+			    width: 20px;
+			}
+			.shopcart-header-left li.header-space1 {
+			    cursor: pointer;
+			    width: 23%;
+			}
+			.shopcart-header-left.current-steps li {
+			    border-right: 1px solid #fff;
+			    cursor: default !important;
+			}
+			.shopcart-header-left li {
+			    border-right: 1px solid #b7b7b7;
+			    box-sizing: border-box;
+			    float: left;
+			    height: 30px;
+			    line-height: 30px;
+			    margin: 15px 0;
+			    overflow: hidden;
+			    position: relative;
+			    text-align: center;
+			}
+			.shopcart-header-left li.header-space2 {
+			    width: 47%;
+			}
+			
+			.shopcart-header-left li.header-space3 {
+			    border: 0 none;
+			    padding-right: 35px;
+			    width: 30%;
+			}
+			.shopcart-header-right li {
+			    background-color: #fff;
+			    box-sizing: border-box;
+			    color: #000;
+			    float: left;
+			    height: 60px;
+			    line-height: 60px;
+			    position: relative;
+			    text-align: center;
+			}
+			
+			.shopcart-header-container .arrowicon::after {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll -35px 0;
+			    content: "";
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    width: 35px;
+			}
+			.shopcart-header-right li.header-space1 {
+			    padding-right: 35px;
+			    width: 33%;
+			}
+			.shopcart-header-right li.header-space2 {
+			    padding-right: 35px;
+			    width: 41%;
+			}
+			.shopcart-header-right li.header-space3 {
+			    width: 26%;
+			}
+			.shopcart-container {
+			    margin: 0 auto 80px;
+			    max-width: 1000px;
+			    
+			}
+			.clearfix::after {
+			    clear: both;
+			    content: "";
+			    display: block;
+			    font-size: 0;
+			    height: 0;
+			    visibility: hidden;
+			}
+			.shopcart-container .shopcart-container-left {
+			    float: left;
+			    width: 72%;
+			}
+			.shopcart-title {
+			    border-bottom: 1px solid #b7b7b7;
+			    font-family: "Rockwell","fzlthjw","微软雅黑","Microsoft YaHei","黑体","SimHei";
+			    font-size: 30px;
+			    font-weight: bold;
+			    height: 65px;
+			    line-height: 65px;
+			    overflow: hidden;
+			    position: relative;
+			    width: 100%;
+			}
+			.shopcart-container .shopcart-list {
+			    border-bottom: 1px dotted #b7b7b7;
+			    padding: 35px 0 25px;
+			    width: 100%;
+			    
+			}
+			.shopcart-info-change {
+			    height: 32px;
+			    margin-bottom: 10px;
+			    width: 100%;
+			}
+			.shopcart-info-change .removeBtn, .shopcart-info-change .editBtn {
+			    cursor: pointer;
+			    float: right;
+			    font-size: 14px;
+			    height: 32px;
+			    line-height: 32px;
+			    margin-left: 30px;
+			    padding-left: 30px;
+			    position: relative;
+			    text-align: right;
+			    width: 28px;
+			}
+			.shopcart-info-change .removeBtn::before {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll -24px -110px;
+			    content: "";
+			    height: 28px;
+			    left: 0;
+			    position: absolute;
+			    top: 0;
+			    width: 22px;
+			}
+			.shopcart-info-change .removeBtn:hover::before {
+			    background-position: -25px -200px;
+			}
+			.shopcart-info-change .editBtn::before {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll 0 -113px;
+			    content: "";
+			    height: 28px;
+			    left: 0;
+			    position: absolute;
+			    top: 0;
+			    width: 22px;
+			}
+			.shopcart-info-change .editBtn:hover::before {
+			    background-position: -1px -200px;
+			}
+			.shopcart-list-image {
+			    float: left;
+			    text-align: left;
+			    width: 26.3%;
+			}
+			.shopcart-list-info {
+			    float: left;
+			    font-size: 14px;
+			    position: relative;
+			    text-align: left;
+			    width: 50.6%;
+			}
+			.shopcart-list-info dl {
+			    height: auto;
+			    position: relative;
+			    width: 100%;
+			}
+			.shopcart-list-info dd {
+			    line-height: 20px;
+			    width: 100%;
+			}
+			.shopcart-list-info dt {
+			    font-size: 18px;
+			    line-height: 25px;
+			    margin-bottom: 45px;
+			    width: 100%;
+			}
+			.shopcart-list-price {
+			    float: left;
+			    height: 150px;
+			    line-height: 25px;
+			    position: relative;
+			    text-align: right;
+			    width: 23.1%;
+			}
+			.shopcart-list-price .list-price {
+			    font-size: 24px;
+			    font-weight: bold;
+			}
+			.shopcart-list-price .shopcart-list-pronum {
+			    font-size: 14px;
+			    position: absolute;
+			    right: 0;
+			    text-align: center;
+			    top: 88px;
+			    width: 90px;
+			}
+			.numbox {
+			    border: 1px solid #ddd;
+			    height: 100%;
+			    position: relative;
+			    width: 100%;
+			}
+			.shopcart-list-price .numbox {
+			    border: 1px solid #ddd;
+			    box-sizing: border-box;
+			    height: 40px;
+			    overflow: hidden;
+			    position: absolute;
+			    right: 0;
+			    text-align: center;
+			    top: 30px;
+			    width: 90px;
+			}
+			.shopcart-list-price .numbox input {
+			    border: medium none;
+			    display: inline-block;
+			    height: 38px;
+			    line-height: 40px;
+			    margin: 0;
+			    padding: 0;
+			    text-align: center;
+			    vertical-align: top;
+			    width: 50px;
+			}
+			.btnbox {
+			    border-left: 1px solid #ddd;
+			    display: inline-block;
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    width: 30px;
+			}
+			.shopcart-list-price .btnbox {
+			    border-left: 1px solid #ddd;
+			    display: inline-block;
+			    height: 100%;
+			    position: relative;
+			    width: 30px;
+			}
+			.btnbox span {
+			    background: transparent url("../img/selectbg.png") no-repeat scroll 0 0;
+			    cursor: pointer;
+			    display: block;
+			    height: 19px;
+			    left: 0;
+			    position: absolute;
+			    width: 100%;
+			}
+			.shopcart-list-price .btnbox span {
+			    background: #fff url("../img/selectbg.png") no-repeat scroll 0 0;
+			    cursor: pointer;
+			    display: block;
+			    height: 19px;
+			    left: 0;
+			    position: absolute;
+			    width: 100%;
+			}
+			.shopcart-list-price .btnbox .add {
+			    background-position: 8px 5px;
+			    top: 0;
+			}
+			.shopcart-list-price .btnbox .reduce {
+			    background-position: 8px -10px;
+			    top: 20px;
+			}
+			.buying-link {
+			    display: block;
+			    height: 50px;
+			    margin-top: 40px;
+			    width: 240px;
+			}
+			.buying-button {
+			    background-color: #fff;
+			    border: 1px solid #b7b7b7;
+			    cursor: pointer;
+			    font-size: 18px;
+			    height: 48px;
+			    line-height: 48px;
+			    margin-top: 0;
+			    text-align: center;
+			    width: 238px;
+			}
+			.buying-button::before {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll -4px -236px;
+			    content: "";
+			    display: inline-block;
+			    height: 25px;
+			    margin-right: 17px;
+			    vertical-align: middle;
+			    width: 15px;
+			}
+			.buying-button:hover::before {
+			    background-position: -29px -236px;
+			    transition-duration: 0.3s;
+			}	
+			.buying-button:hover {
+			    background-color: #000;
+			    color: #fff;
+			    transition-duration: 0.3s;
+			}
+			.shopcart-container .shopcart-container-right {
+			    border: 1px solid #b7b7b7;
+			    float: right;
+			    padding: 0 2%;
+			    width: 20%;
+			}
+			.shopcart-title {
+			    border-bottom: 1px solid #b7b7b7;
+			    font-family: "Rockwell","fzlthjw","微软雅黑","Microsoft YaHei","黑体","SimHei";
+			    font-size: 30px;
+			    font-weight: bold;
+			    height: 65px;
+			    line-height: 65px;
+			    overflow: hidden;
+			    position: relative;
+			    width: 100%;
+			    color: #333333;
+			}
+			.shopcart-container-right .summary-info {
+			    padding: 35px 0 10px;
+			    width: 100%;
+			}
+			.shopcart-container-right .summary-info li {
+			    font-size: 16px;
+			    line-height: 30px;
+			    word-spacing: -1em;
+			}
+			.summary-info li div {
+			    display: inline-block;
+			    position: relative;
+			    width: 50%;
+			}
+			.summary-info li div.title {
+			    cursor: default;
+			    text-align: left;
+			}
+			.qs-icon {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll -49px -207px;
+			    display: inline-block;
+			    height: 21px;
+			    left: 40px;
+			    margin-top: -10px;
+			    position: absolute;
+			    top: 50%;
+			    width: 21px;
+			}
+			.summary-info li div.info {
+			    font-weight: bold;
+			    text-align: right;
+			    word-spacing: 0;
+			}
+			.summary-info li.order-total {
+			    border-top: 1px dotted #b7b7b7;
+			    color: #d50424;
+			    line-height: 30px;
+			    margin-top: 10px;
+			    padding-top: 10px;
+			}
+			.summary-info li.order-total .totalprice {
+			    font-size: 30px;
+			    width: 100%;
+			}
+			.settle-accounts {
+			    background-color: #940000;
+			    color: #fff;
+			    cursor: pointer;
+			    font-size: 18px;
+			    height: 50px;
+			    line-height: 50px;
+			    margin-bottom: 40px;
+			    text-align: center;
+			    width: 100%;
+			}
+			.bold {
+			    font-weight: bold;
+			}
+			.settle-accounts::before {
+			    background: transparent url("../img/cart-sprite1.png") no-repeat scroll -50px -236px;
+			    content: "";
+			    display: inline-block;
+			    height: 25px;
+			    margin-right: 10px;
+			    vertical-align: middle;
+			    width: 16px;
+			}
+			.settle-accounts:hover {
+			    background-color: #bf6766;
+			    transition-duration: 0.3s;
+			}
+			.shopcart-container-right .promotion-grid {
+			    border-top: 1px solid #b7b7b7;
+			    font-size: 14px;
+			    padding: 40px 0;
+			}
+			.shopcart-container-right .promotion-grid-title {
+			    line-height: 20px;
+			    margin-bottom: 15px;
+			}
+			.shopcart-container-right .fz18 {
+			    font-size: 18px;
+			}
+			.shopcart-container-right ul.help-list {
+			    margin-bottom: 20px;
+			}
+			.shopcart-container-right ul.help-list li {
+			    font-size: 8px;
+			    line-height: 20px;
+			    list-style-type: disc;
+			    margin-left: 10px;
+			    text-indent: 5px;
+			}
+			.shopcart-container-right ul.help-list li a {
+			    font-size: 14px;
+			    text-decoration: underline;
+			}
+			
+			.promotion-info {
+			    width: 100%;
+			}
+			.promotion-info a {
+			    text-decoration: underline;
+			}
+			
+			.promotion-info a::before {
+			    background: transparent url("../img/sprites_header_footer.png") no-repeat scroll -76px -90px;
+			    content: "";
+			    display: inline-block;
+			    height: 20px;
+			    margin-right: 10px;
+			    vertical-align: middle;
+			    width: 12px;
 			}
 		</style>
 		<script type="text/javascript" src = "../js/perfect_startMove.js"></script>
@@ -47,7 +552,7 @@
 					<div class = "rgt search"><p><img src="../img/search.png"/></p></div>
 					<div class = "rgt"><p><img src="../img/chatt.png"/></p></div>
 					<div class = "rgt">
-						
+						<p><img src="../img/shopcar.png"/></p>
 					</div>
 					<div class = "rgt" style = "width: auto; font-size: 12px;">
 						<p class = "log" style = "margin: 0; padding-right: 10px;  float: left;"><span>登录</span></p>
@@ -320,7 +825,7 @@
 												和
 												<a href="" style = "text-decoration: underline">使用规则</a>
 											</div>
-											<div class = "taB" id = "register">
+											<div class = "taB" id = "register" style = "margin-top: 10px;">
 												注册账户
 											</div>
 										</li>
@@ -341,8 +846,108 @@
 		</div>
 		<div>
 			<div class = "shop-car">
+				<div class="shopcart-header steps1">
+					<div class="shopcart-header-container">
+						<div class="shopcart-header-left current-steps">
+							<ul>
+								<li class="header-space1">购物车</li>
+								<li class="header-space2">订单总计：￥0</li>
+								<li class="header-space3">0件商品</li>
+							</ul>
+						</div>
+						<div class="shopcart-header-right">
+							<ul>
+								<li class="header-space1 arrowicon">1. 配送</li>
+								<li class="header-space2 arrowicon">2. 付款信息</li>
+								<li class="header-space3">3. 确认订单</li>
+							</ul>
+						</div>	
+					</div>
+				</div>
 				<div class="sale-message">
 					<a style="color: #d50424;" href="">尊敬的顾客您好，我们店铺是不会泄露您的消费信息的，请放心。另外我们也不会要求获取、收集、使用任何与消费者金融消费类（如：信用卡）信息，如果接到以上信息电话，是属于诈骗电话，请勿相信，以防钱财损失。如您对订单有疑问，请联系在线客服。</a>
+				</div>
+				<div class="shopcart-container clearfix">
+					<div class="shopcart-container-left">
+						<div class="shopcart-title">您的购物车：1件商品</div>
+						<ul class="shopcart-list clearfix">
+							<li class="shopcart-info-change">
+								<div id="shopping_cart_remove_sku" class="removeBtn">移除</div>
+								<div class="editBtn" sizeref="40">编辑</div>
+							</li>
+							<li class="shopcart-list-image">
+								<a href="/all_star/155357C031/item.htm" target="_blank" onclick="var x=".tl(";s_objectID="http://www.converse.com.cn/all_star/155357C031/item.htm_1";return this.s_oc?this.s_oc(e):true">
+									<img src="../img/155357C031_1M_NEW.png">
+								</a>
+							</li>
+							<li class="shopcart-list-info">
+								<dl>
+									<dt>
+										<a href="">【男的】Chuck II 摩登月亮印花</a>
+									</dt>
+									<dd>型号：155357C031</dd>
+									<dd>颜色：灰色/黑色</dd>
+									<dd>尺码：40</dd>
+									<br>
+								</dl>
+							</li>
+							<li class="shopcart-list-price">
+								<div class="list-price">￥699.00</div>
+								<div class="shopcart-list-pronum">
+									<span>数量</span>
+									<div class="numbox">
+										
+										<input id="skuQty" value="1" name="skuQty" type="text">
+										<div class="btnbox">
+											<span class="add changeadd"></span>
+											<span class="reduce changereduce"></span>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<a class="buying-link" href="/">
+							<div class="buying-button">继续购物</div>
+						</a>
+					</div>
+					<div class="shopcart-container-right">
+						<div class="shopcart-title">小结信息</div>
+						<ul class="summary-info">
+							<li>
+								<div class="title">
+									商品
+									<a class="qs-icon" href=""></a>
+								</div>
+								<div class="info">￥699.00</div>
+							</li>
+							<li>
+								<div class="title">折扣</div>
+								<div class="info red"> ￥0 </div>
+							</li>
+							<li class="order-total">
+								<div class="title">订单总计:</div>
+								<div class="info totalprice">￥699.00</div>
+							</li>
+						</ul>
+						<div id="nextDeliveryInformation" class="settle-accounts bold">结算</div>
+						<div class="promotion-grid">
+							<div class="promotion-grid-title fz18">需要帮助吗?</div>
+							<ul class="help-list">
+								<li>
+									<a href="" target="_blank">如何确保订单安全？</a>
+								</li>
+								<li>
+									<a href="" target="_blank">我可以使用什么付款方式？</a>
+								</li>
+								<li>
+									<a href="" target="_blank">如何进行退换货？</a>
+								</li>
+							</ul>
+							<div class="promotion-info">
+								<a href="" target="_blank">更多帮助</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
