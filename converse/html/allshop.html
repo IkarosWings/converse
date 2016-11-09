@@ -174,7 +174,6 @@
 		<script type="text/javascript" src = "../js/perfect_startMove.js"></script>
 		<script type="text/javascript" src = "../js/jquery-1.11.3.js"></script>
 		<script type="text/javascript" src = "../js/jquery.cookie.js"></script>
-		<script type="text/javascript" src = "../js/shop_getjson.js"></script>
 		<script type="text/javascript" src = "../js/topsport.js"></script>
 		<script type="text/javascript" src="../js/login.js"></script>
 		<script type = "text/javascript">
@@ -238,15 +237,17 @@
 			
 			function getList(){
 				$.ajax({
-					url: '../json/mens.json',
+					url: '../json/shops.json',
 					type: 'GET',
 					success:function(res){
-						
 						for(var i = 0; i < res.length; i++){
-							shop_list += '<dl><dt><a href="../html/C_type.html"><img src="../' + res[i].img + '"/></a></dt><dd class="shop_name"><a href="">' + res[i].font + '</a></dd><dd class = "shop_price">' + res[i].price + '</dd></dl>'
+							shop_list += '<dl id = ' + res[i].NO + '><dt><a href=""><img src="../img/' + res[i].model + '_1H_NEW.png"/></a></dt><dd class="shop_name"><a href="">' + res[i].title + '</a></dd><dd class = "shop_price">' + res[i].price + '</dd></dl>'
 						}
 						$(".condo").html(shop_list);
 						isloading = false;
+						$(".condo dl").click(function(){
+							window.open("../html/C_type.html?id=" + $(this).attr('id')+ "");
+						});
 					}
 				});
 			}
@@ -277,7 +278,7 @@
 					<div class = "rgt"><a href=""><img src="../img/help.png"/></a></div>
 					<div class = "rgt search"><p><img src="../img/search.png"/></p></div>
 					<div class = "rgt"><p><img src="../img/chatt.png"/></p></div>
-					<div class = "rgt"><p><img src="../img/shopcar.png"/></p></div>
+					<div class = "rgt"><a href="shop_cart.html" style="margin: 0;padding:0;width: 100%;height: 100%;"><p><img src="../img/shopcar.png"/></p></a></div>
 					<div class = "rgt" style = "width: auto; font-size: 12px;">
 						<p class = "log" style = "margin: 0; padding-right: 10px;  float: left;"><span>登录</span></p>
 						<span style = "padding-right: 10px; float: left;">/</span>
@@ -694,7 +695,7 @@
 						</div>
 					</div>
 					<div class="condo">
-						<dl>
+						<!--<dl>
 							<dt>
 								<a href="">
 								<img src="../img/153830C450_1B_NEW.png"/>
@@ -704,7 +705,7 @@
 								<a href=""> 【男女同款】Chuck Taylor All Star Core 常青款 </a>
 							</dd>
 							<dd class = "shop_price">￥339.00</dd>
-						</dl>
+						</dl>-->
 					</div>
 				</div>
 			</div>

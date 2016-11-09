@@ -538,11 +538,39 @@
 		<script type="text/javascript" src = "../js/perfect_startMove.js"></script>
 		<script type="text/javascript" src = "../js/jquery-1.11.3.js"></script>
 		<script type="text/javascript" src = "../js/jquery.cookie.js"></script>
-		<script type="text/javascript" src = "../js/shop_getjson.js"></script>
 		<script type="text/javascript" src = "../js/topsport.js"></script>
 		<script type="text/javascript" src="../js/login.js"></script>
 		<script type = "text/javascript">
 			$(function(){
+				var id = location.search.substr(1).split("=")[1];
+				var namewra;
+				var product_img;
+				var pro_list;
+				var pro_info;
+				var pro_des;
+				var op_list;
+				$.ajax({
+					url: '../json/shops.json',
+					type: 'GET',
+					success:function(res){
+						for(var i = 0; i < res.length; i++){
+							
+							namewra = '<h1 class="product-name"><span id="product-name">'+ res[id].title + '</span>' + res[id].sex + '</h1><div class="product-price"><span>价格</span><span class="">' + res[id].price + '</span></div>'
+							product_img = '<div class="icon-bg-red icon-pdp-chuck"></div><div class="limit-pdp-new"></div><div class="zoomPad" id = "small"><img id = "smallpic" src="../img/' + res[id].model + '_1H_NEW.png" style="width:450px;height:450px;margin:60px 35px 0px;"  width="450" height="450"><div class="zoomPup" id = "moves" style="display: none; width: 56px; height: 143px; position: absolute; border-width: 1px;"></div><div class="zoomWindow" style="display :none;position: absolute; z-index: 5001; left: -202px; top: 0px;"><div class="zoomWrapper" id = "big" style="width: 200px;"><div class="zoomWrapperImage" style="width: 100%; height: 510px;"><img id = "bigpic" style="position: absolute; border: 0px none; display: block; left: 0; top: 0;height: 1600px;width: 1600px;" src="../img/' + res[id].model + '_1L_NEW.png"></div></div></div></div>'
+							pro_list = '<a class="cur"><img src="../img/' + res[id].model + '_1S_NEW.png"></a><a><img src="../img/' + res[id].model + '_2S_NEW.png"></a><a><img src="../img/' + res[id].model + '_3S_NEW.png"></a><a><img src="../img/' + res[id].model + '_4S_NEW.png"></a><a><img src="../img/' + res[id].model + '_5S_NEW.png"></a>'
+							pro_info = '<div>色 : ' + res[id].color + '<br>型号 : ' + res[id].model + '</div><div class="popup-btn"><i></i><span id="size-chart-btn">尺码对照表</span></div>'
+							pro_des = '<p>' + res[id].describe + '</p><a class="learn-more-btn" href="">Chuck Taylor All Star</a>'
+							op_list = '<a class="cur" href=""><img src="../img/' + res[id].model + '_1M_NEW.png" title="灰色/黑色"></a>'
+						}
+						$(".namewrapper").html(namewra);
+						$(".product-img").html(product_img);
+						$(".product-thumb-list").html(pro_list);
+						$(".product-info").html(pro_info);
+						$(".product-description").html(pro_des);
+						$(".other-product-list").html(op_list);
+					}
+				});
+				
 				$(".zoomPad").hover(function(){
 					$(".zoomPup").css("display","block")
 					$(".zoomWindow").css("display","block");
@@ -595,7 +623,7 @@
 					<div class = "rgt"><a href=""><img src="../img/help.png"/></a></div>
 					<div class = "rgt search"><p><img src="../img/search.png"/></p></div>
 					<div class = "rgt"><p><img src="../img/chatt.png"/></p></div>
-					<div class = "rgt"><p><img src="../img/shopcar.png"/></p></div>
+					<div class = "rgt"><a href="shop_cart.html" style="margin: 0;padding:0;width: 100%;height: 100%;"><p><img src="../img/shopcar.png"/></p></a></div>
 					<div class = "rgt" style = "width: auto; font-size: 12px;">
 						<p class = "log" style = "margin: 0; padding-right: 10px;  float: left;"><span>登录</span></p>
 						<span style = "padding-right: 10px; float: left;">/</span>
@@ -953,17 +981,17 @@
 			</div>
 			<div class="ctcenter">
 				<div class="namewrapper">
-					<h1 class="product-name">
+					<!--<h1 class="product-name">
 						<span id="product-name">【男的】Chuck II 摩登月亮印花</span>
 						  男款
 					</h1>
 					<div class="product-price">
 						<span>价格</span>
 						<span class="">¥699.00</span>
-					</div>
+					</div>-->
 				</div>
 				<div class="product-img">
-					<div class="icon-bg-red icon-pdp-chuck"></div>
+					<!--<div class="icon-bg-red icon-pdp-chuck"></div>
 					<div class="limit-pdp-new"></div>
 					<div class="zoomPad" id = "small">
 						<img id = "smallpic" src="../img/155357C031_1H_NEW.png" style="width:450px;height:450px;margin:60px 35px 0px;" alt=" 【男的】Chuck II 摩登月亮印花  男款 " title=" 【男的】Chuck II 摩登月亮印花  男款 " width="450" height="450">
@@ -975,10 +1003,10 @@
 								</div>
 							</div>
 						</div>
-					</div>                                                          
+					</div>                      -->                                    
 				</div>
 				<div class="product-thumb-list">
-					<a class="cur">
+					<!--<a class="cur">
 						<img src="../img/155357C031_1S_NEW.png">
 					</a>
 					<a>
@@ -992,21 +1020,21 @@
 					</a>
 					<a>
 						<img src="../img/155357C031_5S_NEW.png">
-					</a>
+					</a>-->
 				</div>
 				<div class="product-description">
-					<p>全新Chuck Taylor All Star II 系列，鞋面采用纺织面料，结合月亮图案印花，打造极致摩登的硬朗风格。同时，搭载了Chuck II鞋型的革新细节，包括全皮革内衬、精工细致的Chuck Taylor徽标、以及标志性的Nike Lunarlon鞋垫，呈现出卓越舒适的穿着体验。高帮，纺织织物，灰色/黑色。</p>
-					<a class="learn-more-btn" href="">Chuck Taylor All Star</a>
+					<!--<p>全新Chuck Taylor All Star II 系列，鞋面采用纺织面料，结合月亮图案印花，打造极致摩登的硬朗风格。同时，搭载了Chuck II鞋型的革新细节，包括全皮革内衬、精工细致的Chuck Taylor徽标、以及标志性的Nike Lunarlon鞋垫，呈现出卓越舒适的穿着体验。高帮，纺织织物，灰色/黑色。</p>
+					<a class="learn-more-btn" href="">Chuck Taylor All Star</a>-->
 				</div>
 			</div>
 			<div class="ctright">
 				<div class="other-product-list">
-					<a class="cur" href="">
+					<!--<a class="cur" href="">
 						<img src="../img/155357C031_1S_NEW.png" title="灰色/黑色">
-					</a>
+					</a>-->
 				</div>
 				<div class="product-info">
-					<div>
+					<!--<div>
 						色 : 灰色/黑色
 						<br>
 						型号 : 155357C031
@@ -1014,7 +1042,7 @@
 					<div class="popup-btn">
 						<i></i>
 						<span id="size-chart-btn">尺码对照表</span>
-					</div>
+					</div>-->
 				</div>
 				<div class="product-size-wrap noborder">
 					<p>尺码换算器</p>
