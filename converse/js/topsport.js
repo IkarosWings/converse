@@ -31,7 +31,9 @@ $(function(){
         }, 30);
     }    
     //top运动
+    alert();
     function topstart(){
+    	
         if($(".nav").height()>140){
             $(".nav_top").css("height","50px").css("line-height","30px");
             $(".tab_head a i").css('right', "-6px").css("left", "auto");
@@ -49,7 +51,6 @@ $(function(){
             });
         }
     }
-    alert();
     for(var i = 0; i < 3; i++){
     	
         $('.tab_head li').eq(i).hover(function() {

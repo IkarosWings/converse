@@ -539,77 +539,96 @@
 		<script type="text/javascript" src = "../js/jquery-1.11.3.js"></script>
 		<script type="text/javascript" src = "../js/jquery.cookie.js"></script>
 		<script type="text/javascript" src = "../js/topsport.js"></script>
-		<script type="text/javascript" src="../js/login.js"></script>
+		<script type="text/javascript" src = "../js/shops.js"></script>
+		<script type="text/javascript" src ="../js/login.js"></script>
+		<script type="text/javascript" src ="../js/shop_car.js"></script>
 		<script type = "text/javascript">
-			$(function(){
-				var id = location.search.substr(1).split("=")[1];
-				var namewra;
-				var product_img;
-				var pro_list;
-				var pro_info;
-				var pro_des;
-				var op_list;
-				$.ajax({
-					url: '../json/shops.json',
-					type: 'GET',
-					success:function(res){
-						for(var i = 0; i < res.length; i++){
-							
-							namewra = '<h1 class="product-name"><span id="product-name">'+ res[id].title + '</span>' + res[id].sex + '</h1><div class="product-price"><span>价格</span><span class="">' + res[id].price + '</span></div>'
-							product_img = '<div class="icon-bg-red icon-pdp-chuck"></div><div class="limit-pdp-new"></div><div class="zoomPad" id = "small"><img id = "smallpic" src="../img/' + res[id].model + '_1H_NEW.png" style="width:450px;height:450px;margin:60px 35px 0px;"  width="450" height="450"><div class="zoomPup" id = "moves" style="display: none; width: 56px; height: 143px; position: absolute; border-width: 1px;"></div><div class="zoomWindow" style="display :none;position: absolute; z-index: 5001; left: -202px; top: 0px;"><div class="zoomWrapper" id = "big" style="width: 200px;"><div class="zoomWrapperImage" style="width: 100%; height: 510px;"><img id = "bigpic" style="position: absolute; border: 0px none; display: block; left: 0; top: 0;height: 1600px;width: 1600px;" src="../img/' + res[id].model + '_1L_NEW.png"></div></div></div></div>'
-							pro_list = '<a class="cur"><img src="../img/' + res[id].model + '_1S_NEW.png"></a><a><img src="../img/' + res[id].model + '_2S_NEW.png"></a><a><img src="../img/' + res[id].model + '_3S_NEW.png"></a><a><img src="../img/' + res[id].model + '_4S_NEW.png"></a><a><img src="../img/' + res[id].model + '_5S_NEW.png"></a>'
-							pro_info = '<div>色 : ' + res[id].color + '<br>型号 : ' + res[id].model + '</div><div class="popup-btn"><i></i><span id="size-chart-btn">尺码对照表</span></div>'
-							pro_des = '<p>' + res[id].describe + '</p><a class="learn-more-btn" href="">Chuck Taylor All Star</a>'
-							op_list = '<a class="cur" href=""><img src="../img/' + res[id].model + '_1M_NEW.png" title="灰色/黑色"></a>'
-						}
-						$(".namewrapper").html(namewra);
-						$(".product-img").html(product_img);
-						$(".product-thumb-list").html(pro_list);
-						$(".product-info").html(pro_info);
-						$(".product-description").html(pro_des);
-						$(".other-product-list").html(op_list);
+			
+			
+			
+			
+			var id = location.search.substr(1).split("=")[1];
+			var namewra;
+			var product_img;
+			var pro_list;
+			var pro_info;
+			var pro_des;
+			var op_list;
+			var add_buy;
+			$.ajax({
+				url: '../json/shops.json',
+				type: 'GET',
+				success:function(res){
+					for(var i = 0; i < res.length; i++){
+						add_buy = '<span id = ' + res[id].NO + '><i></i>添加到购物车</span>'
+						namewra = '<h1 class="product-name"><span id="product-name">'+ res[id].title + '</span>' + res[id].sex + '</h1><div class="product-price"><span>价格</span><span class="">' + res[id].price + '</span></div>'
+						product_img = '<div class="icon-bg-red icon-pdp-chuck"></div><div class="limit-pdp-new"></div><div class="zoomPad" id = "small"><img id = "smallpic" src="../img/' + res[id].model + '_1H_NEW.png" style="width:450px;height:450px;margin:60px 35px 0px;"  width="450" height="450"><div class="zoomPup" id = "moves" style="display: none; width: 56px; height: 143px; position: absolute; border-width: 1px;"></div><div class="zoomWindow" style="display :none;position: absolute; z-index: 5001; left: -202px; top: 0px;"><div class="zoomWrapper" id = "big" style="width: 200px;"><div class="zoomWrapperImage" style="width: 100%; height: 510px;"><img id = "bigpic" style="position: absolute; border: 0px none; display: block; left: 0; top: 0;height: 1600px;width: 1600px;" src="../img/' + res[id].model + '_1L_NEW.png"></div></div></div></div>'
+						pro_list = '<a class="cur"><img src="../img/' + res[id].model + '_1S_NEW.png"></a><a><img src="../img/' + res[id].model + '_2S_NEW.png"></a><a><img src="../img/' + res[id].model + '_3S_NEW.png"></a><a><img src="../img/' + res[id].model + '_4S_NEW.png"></a><a><img src="../img/' + res[id].model + '_5S_NEW.png"></a>'
+						pro_info = '<div>色 : ' + res[id].color + '<br>型号 : ' + res[id].model + '</div><div class="popup-btn"><i></i><span id="size-chart-btn">尺码对照表</span></div>'
+						pro_des = '<p>' + res[id].describe + '</p><a class="learn-more-btn" href="">Chuck Taylor All Star</a>'
+						op_list = '<a class="cur" href=""><img src="../img/' + res[id].model + '_1M_NEW.png" title="灰色/黑色"></a>'
 					}
-				});
-				
-				$(".zoomPad").hover(function(){
-					$(".zoomPup").css("display","block")
-					$(".zoomWindow").css("display","block");
-				},function(){
-					$(".zoomPup").css("display","none");
-					$(".zoomWindow").css("display","none");
-				});
-				
-				var small=document.getElementById('small');//小图大框
-				var moves=document.getElementById('moves');//移动小框
-				var smallpic=document.getElementById('smallpic');//图片
-				var big=document.getElementById('big');
-				var bigpic=document.getElementById('bigpic')
-				
-				smallpic.onmousemove=function(event){
-					var evt=event||window.event;
-					var left=evt.offsetX-moves.offsetWidth/2;
-					if(left<0){
-						left=0;
-					}else if(left>small.offsetWidth-moves.offsetWidth){
-						left=small.offsetWidth-moves.offsetWidth;
-					}
-					//moves.style.left=left+'px';
-					$("#moves").css("left",left+"px");
-					var top=evt.offsetY-moves.offsetHeight/2;
-					if(top<0){
-						top=0;
-					}else if(top>small.offsetHeight-moves.offsetHeight){
-						top=small.offsetHeight-moves.offsetHeight
-					}
-					$("#moves").css("top",top+"px");
-					//moves.style.top=top+'px';
-					//移动的比例  把X值和Y值换算成比例;
-					var proportionX=left/(small.offsetWidth-moves.offsetWidth);
-					var proportionY=top/(small.offsetHeight-moves.offsetHeight);
-					//利用比例去算出大小不同的元素的偏移距离；
-					bigpic.style.left=-proportionX*(bigpic.offsetWidth-big.offsetWidth)+'px';
-					bigpic.style.top=-proportionY*(bigpic.offsetHeight-big.offsetHeight)+'px';
+					$(".namewrapper").html(namewra);
+					$(".product-img").html(product_img);
+					$(".product-thumb-list").html(pro_list);
+					$(".product-info").html(pro_info);
+					$(".product-description").html(pro_des);
+					$(".other-product-list").html(op_list);
+					$("#add-buycart-btn").html(add_buy);
 				}
+			});
+			$(function(){
+				
+				
+
+					
+					$(".zoomPad").hover(function(){
+						$(".zoomPup").css("display","block")
+						$(".zoomWindow").css("display","block");
+					},function(){
+						$(".zoomPup").css("display","none");
+						$(".zoomWindow").css("display","none");
+					});
+					var small=document.getElementById('small');//小图大框
+					var moves=document.getElementById('moves');//移动小框
+					var smallpic=document.getElementById("smallpic");//图片
+					var big=document.getElementById('big');
+					var bigpic=document.getElementById('bigpic');
+					smallpic.onmousemove=function(event){
+						var evt=event||window.event;
+						var left=evt.offsetX-moves.offsetWidth/2;
+						if(left<0){
+							left=0;
+						}else if(left>small.offsetWidth-moves.offsetWidth){
+							left=small.offsetWidth-moves.offsetWidth;
+						}
+						//moves.style.left=left+'px';
+						$("#moves").css("left",left+"px");
+						var top=evt.offsetY-moves.offsetHeight/2;
+						if(top<0){
+							top=0;
+						}else if(top>small.offsetHeight-moves.offsetHeight){
+							top=small.offsetHeight-moves.offsetHeight
+						}
+						$("#moves").css("top",top+"px");
+						//moves.style.top=top+'px';
+						//移动的比例  把X值和Y值换算成比例;
+						var proportionX=left/(small.offsetWidth-moves.offsetWidth);
+						var proportionY=top/(small.offsetHeight-moves.offsetHeight);
+						//利用比例去算出大小不同的元素的偏移距离；
+						bigpic.style.left=-proportionX*(bigpic.offsetWidth-big.offsetWidth)+'px';
+						bigpic.style.top=-proportionY*(bigpic.offsetHeight-big.offsetHeight)+'px';
+					}
+						
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			})
 		</script>
 	</head>
@@ -623,7 +642,7 @@
 					<div class = "rgt"><a href=""><img src="../img/help.png"/></a></div>
 					<div class = "rgt search"><p><img src="../img/search.png"/></p></div>
 					<div class = "rgt"><p><img src="../img/chatt.png"/></p></div>
-					<div class = "rgt"><a href="shop_cart.html" style="margin: 0;padding:0;width: 100%;height: 100%;"><p><img src="../img/shopcar.png"/></p></a></div>
+					<div class = "rgt"><a href="shop_cart.html"  style="margin: 0;padding:0;width: 100%;height: 100%;"><p><img src="../img/shopcar.png"/></p></a></div>
 					<div class = "rgt" style = "width: auto; font-size: 12px;">
 						<p class = "log" style = "margin: 0; padding-right: 10px;  float: left;"><span>登录</span></p>
 						<span style = "padding-right: 10px; float: left;">/</span>
@@ -1051,10 +1070,10 @@
 					<span>立即购买</span>
 				</a>
 				<a id="add-buycart-btn" class="add-buycart-btn">
-					<span>
+					<!--<span>
 						<i></i>
 						添加到购物车
-					</span>
+					</span>-->
 				</a>
 			</div>
 		</div>

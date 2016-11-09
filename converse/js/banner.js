@@ -31,7 +31,7 @@ $(function(){
 	})
 	//点击切换事件
 	function getOver(){
-		alert();
+		
 		$('.banbtn li').hover(function() {
 			clearInterval(timer);
 			num=$(this).index();
