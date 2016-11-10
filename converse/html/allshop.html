@@ -693,13 +693,20 @@
 						<div class = "sort-box">
 							<div class="sort">排序</div>
 							<div class = "sort-list">
-								<a class="shop_active" href="">默认</a>
-								<a class="" href="">价格</a>
-								<a class="" href="">最喜欢</a>
-								<a class="" href="">最畅销</a>
+								<a class="shop_active" href="#" >默认</a>
+								<a class="" href="#">价格</a>
+								<a class="" href="#">最喜欢</a>
+								<a class="" href="#" >最畅销</a>
 							</div>
 						</div>
 					</div>
+					<script type = "text/javascript">
+						$(".sort-list a").click(function(){
+							$(".sort-list a").removeClass("shop_active");
+							$(this).addClass("shop_active");
+						})
+
+					</script>
 					<div class="condo">
 						<!--<dl>
 							<dt>

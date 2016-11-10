@@ -26,6 +26,9 @@ h1{
     font-size: 30px;
     margin: 78px auto 35px
 }
+img{
+	border: 0 none;
+}
 .cool_title{
 	background: #464646;
 	color: #fff;
