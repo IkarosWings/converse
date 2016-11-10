@@ -242,7 +242,7 @@
 					type: 'GET',
 					success:function(res){
 						for(var i = 0; i < res.length; i++){
-							shop_list += '<dl id = ' + res[i].NO + '><dt><a href=""><img src="../img/' + res[i].model + '_1H_NEW.png"/></a></dt><dd class="shop_name"><a href="">' + res[i].title + '</a></dd><dd class = "shop_price">' + res[i].price + '</dd></dl>'
+							shop_list += '<dl id = ' + res[i].NO + '><dt><a><img src="../img/' + res[i].model + '_1H_NEW.png"/></a></dt><dd class="shop_name"><a>' + res[i].title + '</a></dd><dd class = "shop_price">' + res[i].price + '</dd></dl>'
 						}
 						$(".condo").html(shop_list);
 						isloading = false;

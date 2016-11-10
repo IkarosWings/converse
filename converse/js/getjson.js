@@ -124,7 +124,7 @@ $.ajax({
 		
 		$('.news1').html(fa);
 		$('.news2').html(fb);
-		$('.news3').html(fb);
+		$('.news3').html(fc);
 	}
 });
 	

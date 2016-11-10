@@ -16,6 +16,17 @@ $(function  () {
        		$(".btn_2").removeClass('bton').animate({opacity:0}, 200);
        		$(".btn_3").removeClass('bton').animate({opacity:0}, 200);
 			$(".btn_"+s).addClass('bton').animate({opacity:1}, 200);
+			if(s==0){
+				$(".boult").stop().animate({left:12+"%"},700);
+			}else if(s==1){
+				$(".boult").stop().animate({left:37+"%"},700);
+			}else if(s==2){
+				$(".boult").stop().animate({left:63+"%"},700);
+			}else{
+				$(".boult").stop().animate({left:88+"%"},700);
+			}
+			
+			
         }, function() {
            	
         });
