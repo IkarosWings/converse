@@ -538,15 +538,11 @@
 		<script type="text/javascript" src = "../js/perfect_startMove.js"></script>
 		<script type="text/javascript" src = "../js/jquery-1.11.3.js"></script>
 		<script type="text/javascript" src = "../js/jquery.cookie.js"></script>
-		<script type="text/javascript" src = "../js/topsport.js"></script>
+		<!--<script type="text/javascript" src = "../js/topsport.js"></script>-->
 		<script type="text/javascript" src = "../js/shops.js"></script>
 		<script type="text/javascript" src ="../js/login.js"></script>
 		<script type="text/javascript" src ="../js/shop_car.js"></script>
 		<script type = "text/javascript">
-			
-			
-			
-			
 			var id = location.search.substr(1).split("=")[1];
 			var namewra;
 			var product_img;
@@ -577,12 +573,17 @@
 					$("#add-buycart-btn").html(add_buy);
 				}
 			});
+			
 			$(function(){
-				
-				
-
-					
-					$(".zoomPad").hover(function(){
+				setTimeout(function(){ //延迟5秒
+		          	var body = document.getElementsByTagName('body')[0];
+		        	var scr = document.createElement('script');//创建一个script节点
+		            scr.setAttribute('src','../js/topsport.js'); //给script节点添加路径
+		            body.appendChild(scr);
+		        },1000);
+		        
+		        setTimeout(function(){
+		        	$(".zoomPad").hover(function(){
 						$(".zoomPup").css("display","block")
 						$(".zoomWindow").css("display","block");
 					},function(){
@@ -619,17 +620,9 @@
 						bigpic.style.left=-proportionX*(bigpic.offsetWidth-big.offsetWidth)+'px';
 						bigpic.style.top=-proportionY*(bigpic.offsetHeight-big.offsetHeight)+'px';
 					}
-						
-				
-				
-				
-				
-				
-				
-				
-				
-				
+		        },1000);
 			})
+			
 		</script>
 	</head>
 	<body>

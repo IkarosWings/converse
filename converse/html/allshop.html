@@ -174,12 +174,17 @@
 		<script type="text/javascript" src = "../js/perfect_startMove.js"></script>
 		<script type="text/javascript" src = "../js/jquery-1.11.3.js"></script>
 		<script type="text/javascript" src = "../js/jquery.cookie.js"></script>
-		<script type="text/javascript" src = "../js/topsport.js"></script>
+		<!--<script type="text/javascript" src = "../js/topsport.js"></script>-->
 		<script type="text/javascript" src="../js/login.js"></script>
 		<script type="text/javascript" src = "../js/shops.js"></script>
 		<script type = "text/javascript">
 			$(function(){
-				
+				setTimeout(function(){ //延迟5秒
+		          	var body = document.getElementsByTagName('body')[0];
+		        	var scr = document.createElement('script');//创建一个script节点
+		            scr.setAttribute('src','../js/topsport.js'); //给script节点添加路径
+		            body.appendChild(scr);
+		        },1000);
 			})
 			var condo = $(".condo"); //商品房
 			var shops = $(".condo").find("dl"); //商品

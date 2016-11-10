@@ -31,7 +31,7 @@ $(function(){
         }, 30);
     }    
     //top运动
-    //alert()
+    //alert("如不触发hover事件，请用火狐尝试")
     function topstart(){
         if($(".nav").height()>140){
             $(".nav_top").css("height","50px").css("line-height","30px");
